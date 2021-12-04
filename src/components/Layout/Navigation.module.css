@@ -1,0 +1,31 @@
+.navigation{
+    width: 100%;
+    height: 50px;
+    background-color: var(--brown);
+    position: fixed;
+    left: 0;
+    top: 0;
+    box-shadow: rgba(0,0,0,0.25);
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px;
+}
+.nav{
+    /* margin-right: 5rem; */
+    /* padding: 5px; */
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+ul{
+   
+    list-style: none;
+   
+}
+a{
+    text-decoration: none;
+    color: white;
+}
