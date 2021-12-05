@@ -10,7 +10,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding:10px;
+    padding:0 5% 0 8%;
 }
 .nav{
     /* margin-right: 5rem; */

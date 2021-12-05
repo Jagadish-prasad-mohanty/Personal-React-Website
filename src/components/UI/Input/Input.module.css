@@ -1,0 +1,19 @@
+.Input{
+    width: 90%;
+    margin: 0.6rem 0;
+    display: flex;
+    justify-content: space-between;
+}
+.Input label{
+    width: 30%;
+    text-align: right;
+    cursor: pointer;
+}
+.Input input{
+    width: 65%;
+    padding: 0.4rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: rosybrown;
+    color: white;
+}

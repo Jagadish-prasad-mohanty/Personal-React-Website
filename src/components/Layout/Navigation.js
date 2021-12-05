@@ -6,14 +6,17 @@ function Navigation() {
         <>
             <ul className={classes.navigation}>
                 <li>
-                    <NavLink to="/">RedEye</NavLink>
+                    <NavLink to="/"><h3>RedEye</h3></NavLink>
                 </li>
                 <div className={classes.nav}>
                     <li>
-                        <NavLink to="/products">Priducts</NavLink>
+                        <NavLink to="/products">Products</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/login">Login</NavLink>
+                        <NavLink to="/cart">Cart</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/auth">Login</NavLink>
                     </li>
                 </div>
                     

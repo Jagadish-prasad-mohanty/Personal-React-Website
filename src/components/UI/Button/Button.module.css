@@ -1,0 +1,16 @@
+.Button{
+    border: none;
+    color: var(--brown);
+    background-color: white;
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 1px rgba(0,0,0,0.25);
+    padding:.4rem 0.8rem;
+    font-size: 1rem;
+    margin: 1rem 0;
+    outline: none;
+
+}
+.Button:hover{
+    background-color: var(--brown);
+    color: white;
+}
