@@ -1,10 +1,16 @@
-import React, {  useRef, useState } from "react";
+import React, {  useReducer, useRef, useState } from "react";
 import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import Input from "../UI/Input/Input";
+
+import {useDispatch, useSelector} from 'react-redux'
+import { loginHandler } from "../../store/actions/authActions";
 function AuthFrom(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
+
+    const dispatch=useDispatch();
+  // const state = useSelector(state => state)
   const changeLoggedStatusHandler = () => {
     setIsLoggedIn((prevState) => !prevState);
   };
@@ -55,8 +61,11 @@ function AuthFrom(props) {
         }).then(data=>{
             console.log(data);
             props.show("Success!!",'complete')
+            dispatch(loginHandler(data.idToken));
         }).catch(err=>{
-            props.show("Authentication Failed!! Please check Email & Password",'error')
+          // "Authentication Failed!! Please check Email & Password"
+          console.log("[authform]",err.message);
+            props.show(err.message,'error')
         })
       
     // console.log(currentNameRef, currentEmailRef,currentPassRef);
@@ -84,7 +93,7 @@ function AuthFrom(props) {
         type="password"
       />
       <Button
-        btnName={isLoading?"Loading...":!isLoggedIn ? "signin" : "signup"}
+        btnName={isLoading?"Loading...":!isLoggedIn ? "signup" : "signin"}
         onclick={formSubmitHandler}
       />
       <p>
