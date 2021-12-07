@@ -6,13 +6,13 @@ import Input from "../UI/Input/Input";
 import {useDispatch, useSelector} from 'react-redux'
 import { loginHandler } from "../../store/actions/authActions";
 function AuthFrom(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignIn, setIsSignIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
 
     const dispatch=useDispatch();
   // const state = useSelector(state => state)
   const changeLoggedStatusHandler = () => {
-    setIsLoggedIn((prevState) => !prevState);
+    setIsSignIn((prevState) => !prevState);
   };
   
   const nameRef = useRef();
@@ -27,7 +27,7 @@ function AuthFrom(props) {
     setIsLoading(true)
     props.show("Loading...","pending");
     let url=null;
-    if (isLoggedIn){
+    if (isSignIn){
         url="https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA0Y2pLVV2VbisAjK53JRiQ74z_qWaC_Vs";
     }
       else{
@@ -60,8 +60,10 @@ function AuthFrom(props) {
             
         }).then(data=>{
             console.log(data);
-            props.show("Success!!",'complete')
-            dispatch(loginHandler(data.idToken));
+            props.show("Success!!",'complete');
+            if (isSignIn){
+              dispatch(loginHandler(data.idToken));
+            }
         }).catch(err=>{
           // "Authentication Failed!! Please check Email & Password"
           console.log("[authform]",err.message);
@@ -73,8 +75,8 @@ function AuthFrom(props) {
   };
   return (
     <Card>
-      <h3>{isLoggedIn ? "SignIn" : "SignUp"}</h3>
-      {!isLoggedIn && 
+      <h3>{isSignIn ? "SignIn" : "SignUp"}</h3>
+      {!isSignIn && 
       <Input 
       label="Name" 
       type="text"
@@ -93,16 +95,16 @@ function AuthFrom(props) {
         type="password"
       />
       <Button
-        btnName={isLoading?"Loading...":!isLoggedIn ? "signup" : "signin"}
+        btnName={isLoading?"Loading...":!isSignIn ? "signup" : "signin"}
         onclick={formSubmitHandler}
       />
       <p>
-      {!isLoggedIn ? "Already a User!! " : "Don't have an account? "}
+      {!isSignIn ? "Already a User!! " : "Don't have an account? "}
         <span
           style={{ color: "blue", cursor: "pointer" }}
           onClick={changeLoggedStatusHandler}
         >
-          {!isLoggedIn ? "signin" : "signup"}
+          {!isSignIn ? "signin" : "signup"}
         </span>
       </p>
     </Card>

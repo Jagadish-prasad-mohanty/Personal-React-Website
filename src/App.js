@@ -17,7 +17,7 @@ function App() {
   const [message,setMessage]=useState('')
   const showModal= (errMsg,sts) =>{
     setModalActive(true);
-    console.log(errMsg,sts);
+    console.log("[App.js]",errMsg,sts);
     setMessage(errMsg);
     setStatus(sts)
   }
@@ -26,7 +26,7 @@ function App() {
   }
   return (
   <>
-    <Layout className={classes.App}>
+    <Layout className={classes.App} show={showModal}>
     {modalActive && <ErrorModal close={closeModal} status={status} msg={message}/>}
     <Routes>
         

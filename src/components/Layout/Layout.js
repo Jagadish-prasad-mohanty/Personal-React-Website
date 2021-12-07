@@ -3,7 +3,7 @@ import Navigation from './Navigation'
 function Layout(props) {
     return (
         <div className={props.className?props.className:null}>
-            <Navigation/>
+            <Navigation show={props.show}/>
             <main>{props.children}</main>
         </div>
     )

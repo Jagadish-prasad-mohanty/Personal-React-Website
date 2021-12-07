@@ -1,4 +1,5 @@
-import {LOG_IN,LOG_OUT} from '../actions/authActions'
+import {LOG_IN,LOG_OUT} from '../actions/authActions';
+import {useState} from 'react';
 
 const initialState={
     token:null,
@@ -6,20 +7,20 @@ const initialState={
 }
 
 const authReducer= (state=initialState,action)=>{
-    const userLoggedIn=!!state.token;
+//     const userLoggedIn=!!state.token;
     switch(action.type){
         case LOG_IN:
             const newToken=action.token
             return {
                 ...state,
                 token:newToken,
-                isLoggedIn:userLoggedIn
+                isLoggedIn:true
             }
         case LOG_OUT:
             return {
                 ...state,
                 token:null,
-                isLoggedIn:userLoggedIn
+                isLoggedIn:false
             }
         default:
             return state

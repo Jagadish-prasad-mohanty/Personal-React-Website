@@ -7,7 +7,7 @@ function ErrorModal(props) {
     const cancelModal =()=>{
         props.close();
     }
-    console.log("ErrorModal",extraClass.join(' '));
+    // console.log("ErrorModal",extraClass.join(' '));
     return (
         <div className={extraClass.join(' ')}>
             <p>{props.msg}</p>
