@@ -10,6 +10,7 @@ import classes from './App.module.css'
 import AuthPage from './pages/AuthPage';
 import CartPage from './pages/CartPage';
 import ErrorModal from './components/UI/Error/ErrorModal';
+import Profile from './components/Profile/Profile'
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -33,7 +34,7 @@ function App() {
         <Route path="/" element={<HomePage/>}/>
         <Route path="/auth" element={<AuthPage show={showModal}/>}/>
         <Route path="/cart" element={<CartPage/>}/>
-        
+        <Route path="/profile" element={<Profile show={showModal}/>}/>
         <Route path="/products" element={<ProductPage/>}/>
     </Routes>
       

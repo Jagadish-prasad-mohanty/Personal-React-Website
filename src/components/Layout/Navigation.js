@@ -25,10 +25,13 @@ function Navigation(props) {
                         <NavLink to="/cart">Cart</NavLink>
                     </li>}
                     {!state.isLoggedIn && <li>
-                        <NavLink to="/auth">Login</NavLink>
+                        <NavLink to="/auth" style={{'margin-left':0}}>Login</NavLink>
                     </li>}
                     {state.isLoggedIn && <li>
                         <button onClick={onLogoutHandler}>Logout</button>
+                    </li>}
+                    {state.isLoggedIn && <li>
+                        <NavLink to="/profile">{state.userEmail.substr(0,7)+".."}</NavLink>
                     </li>}
                 </div>
                     

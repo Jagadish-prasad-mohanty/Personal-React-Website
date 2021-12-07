@@ -62,7 +62,7 @@ function AuthFrom(props) {
             console.log(data);
             props.show("Success!!",'complete');
             if (isSignIn){
-              dispatch(loginHandler(data.idToken));
+              dispatch(loginHandler({userToken:data.idToken,userName:data.email}));
             }
         }).catch(err=>{
           // "Authentication Failed!! Please check Email & Password"
