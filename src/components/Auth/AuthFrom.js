@@ -5,10 +5,11 @@ import Input from "../UI/Input/Input";
 
 import {useDispatch, useSelector} from 'react-redux'
 import { loginHandler } from "../../store/actions/authActions";
+import { useNavigate } from "react-router";
 function AuthFrom(props) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
-
+    const navigate=useNavigate();
     const dispatch=useDispatch();
   // const state = useSelector(state => state)
   const changeLoggedStatusHandler = () => {
@@ -64,6 +65,7 @@ function AuthFrom(props) {
             if (isSignIn){
               dispatch(loginHandler({userToken:data.idToken,userName:data.email}));
             }
+            navigate('/')
         }).catch(err=>{
           // "Authentication Failed!! Please check Email & Password"
           console.log("[authform]",err.message);

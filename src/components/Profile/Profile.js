@@ -3,7 +3,11 @@ import {useSelector} from 'react-redux';
 import classes from './Profile.module.css';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
+import Card from '../UI/Card/Card';
+import { useNavigate } from 'react-router-dom';
+// import { useHistory } from 'react-router';
 function Profile(props) {
+    const navigate=useNavigate();
     const email=useSelector(state=>state.userEmail);
     const userToken=useSelector(state=>state.userToken);
      const [isLoading,setIsLoading] =useState(false);
@@ -40,6 +44,7 @@ function Profile(props) {
         }).then(data=>{
             console.log(data);
             props.show("Password Change Successfully!!",'complete');
+            navigate('/')
 
         }).catch(err=>{
           // "Authentication Failed!! Please check Email & Password"
@@ -49,16 +54,19 @@ function Profile(props) {
     }
     return (
         <div className={classes.Profile}>
-            <h2>{email}</h2>
-            <h2>{userToken}</h2>
-            <h3>Want to change Password!!</h3>
+        <p>Welcome <span >{email}</span></p>
+        <Card>
+
+            
+            <h3 style={{'marginBottom':'1rem'}}>Want to change Password!!</h3>
 
             <Input label="New Password" type="password" ref={newPassRef}
             // style={{'display':'flex','flex-flow':'column','align-items':'center','justify-content':'center','gap':'1rem'}}
             />
             <Button btnName="Submit" onclick={changePassHandler}/>
+        </Card>
 
-        </div>
+       </div>
     )
 }
 

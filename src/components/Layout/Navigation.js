@@ -31,7 +31,10 @@ function Navigation(props) {
                         <button onClick={onLogoutHandler}>Logout</button>
                     </li>}
                     {state.isLoggedIn && <li>
-                        <NavLink to="/profile">{state.userEmail.substr(0,7)+".."}</NavLink>
+                        <NavLink to="/profile">
+                        <i class="far fa-user-circle"></i>
+                        {/* {state.userEmail.substr(0,7)+".."} */}
+                        </NavLink>
                     </li>}
                 </div>
                     

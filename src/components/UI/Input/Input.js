@@ -5,7 +5,7 @@ const Input =React.forwardRef((props,ref)=> {
   const name = props.label.toLowerCase();
   return (
     <div className={classes.Input} style={props.style}>
-      <label htmlFor={name}>{props.label} :</label>
+      <label htmlFor={name}><strong>{props.label} :</strong></label>
       <input id={name} type={props.type}  placeholder={placeholder} 
       ref={ref} 
 

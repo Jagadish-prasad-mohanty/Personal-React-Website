@@ -17,8 +17,9 @@
     /* padding: 5px; */
     width: 30%;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
+    margin-right: 3rem;
     /* padding-right:0 */
 
     
@@ -28,11 +29,17 @@ ul{
     list-style: none;
    
 }
-
-a,button{
-    /* margin-left:1.5rem; */
+ul div a, button{
+    margin-left:1.5rem;
+}
+a{
+    
     text-decoration: none;
     color: white;
+}
+ul i{
+    color: white;
+    font-size: 1.5rem;
 }
 button{
     border: none;

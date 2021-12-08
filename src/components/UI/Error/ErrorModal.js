@@ -11,7 +11,7 @@ function ErrorModal(props) {
     return (
         <div className={extraClass.join(' ')}>
             <p>{props.msg}</p>
-            <p onClick={cancelModal}>@</p>
+            <p onClick={cancelModal}><i class="fas fa-times"></i></p>
         </div>
     )
 }
