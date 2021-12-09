@@ -4,7 +4,7 @@ import Card from "../UI/Card/Card";
 import Input from "../UI/Input/Input";
 
 import {useDispatch, useSelector} from 'react-redux'
-import { loginHandler } from "../../store/actions/authActions";
+import { loginHandler, logoutHandler } from "../../store/actions/authActions";
 import { useNavigate } from "react-router";
 function AuthFrom(props) {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -63,7 +63,12 @@ function AuthFrom(props) {
             console.log(data);
             props.show("Success!!",'complete');
             if (isSignIn){
-              dispatch(loginHandler({userToken:data.idToken,userName:data.email}));
+              const newTime=new Date().getTime();
+              // setTimeout(() => {
+              //   dispatch(logoutHandler())
+              // }, 5000);
+              
+              dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+5000}));
             }
             navigate('/')
         }).catch(err=>{

@@ -11,19 +11,14 @@ import AuthPage from './pages/AuthPage';
 import CartPage from './pages/CartPage';
 import ErrorModal from './components/UI/Error/ErrorModal';
 import Profile from './components/Profile/Profile'
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
   const [status,setStatus]=useState('');
   const [message,setMessage]=useState('');
   const state=useSelector(state=>state);
-  const dispatch=useDispatch();
-  const fetchedUserToken=localStorage.getItem('token');
-  const fetchedUserName=localStorage.getItem('user');
-  if (fetchedUserToken){
-    dispatch({'userToken':fetchedUserToken,'userName':fetchedUserName})
-  }
+  
   const showModal= (errMsg,sts) =>{
     setModalActive(true);
     console.log("[App.js]",errMsg,sts);
