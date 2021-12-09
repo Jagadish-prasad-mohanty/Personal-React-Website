@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Route,Routes,Redirect} from 'react-router-dom';
+import { Route,Routes,Navigate} from 'react-router-dom';
 // import './App.css';
 import Home from './components/Home/Home';
 import Layout from './components/Layout/Layout';
@@ -11,13 +11,19 @@ import AuthPage from './pages/AuthPage';
 import CartPage from './pages/CartPage';
 import ErrorModal from './components/UI/Error/ErrorModal';
 import Profile from './components/Profile/Profile'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
   const [status,setStatus]=useState('');
   const [message,setMessage]=useState('');
   const state=useSelector(state=>state);
+  const dispatch=useDispatch();
+  const fetchedUserToken=localStorage.getItem('token');
+  const fetchedUserName=localStorage.getItem('user');
+  if (fetchedUserToken){
+    dispatch({'userToken':fetchedUserToken,'userName':fetchedUserName})
+  }
   const showModal= (errMsg,sts) =>{
     setModalActive(true);
     console.log("[App.js]",errMsg,sts);
@@ -36,9 +42,9 @@ function App() {
         <Route path="/" element={<HomePage/>}/>
         {!state.isLoggedIn && <Route path="/auth" element={<AuthPage show={showModal}/>}/>}
         {state.isLoggedIn && <Route path="/cart" element={<CartPage/>}/>}
-        {state.isLoggedIn && <Route path="/profile" element={<Profile show={showModal}/>}/>}
+        <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
         {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
-        
+        <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       
     </Layout>

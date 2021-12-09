@@ -9,11 +9,13 @@ const initialState={
 
 const authReducer= (state=initialState,action)=>{
 //     const userLoggedIn=!!state.token;
+    
     switch(action.type){
         case LOG_IN:
             const newToken=action.userData.userToken;
             const newUser=action.userData.userName.substr(0,action.userData.userName.length-10);
-            
+            localStorage.setItem('token',newToken);
+            localStorage.setItem('user',newUser);
             return {
                 ...state,
                 userEmail:newUser,
@@ -21,6 +23,8 @@ const authReducer= (state=initialState,action)=>{
                 isLoggedIn:true
             }
         case LOG_OUT:
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
             return {
                 ...state,userEmail:null,
                 userToken:null,

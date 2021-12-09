@@ -25,7 +25,7 @@ function Navigation(props) {
                         <NavLink to="/cart">Cart</NavLink>
                     </li>}
                     {!state.isLoggedIn && <li>
-                        <NavLink to="/auth" style={{'margin-left':0}}>Login</NavLink>
+                        <NavLink to="/auth" style={{'marginleft':0}}>Login</NavLink>
                     </li>}
                     {state.isLoggedIn && <li>
                         <button onClick={onLogoutHandler}>Logout</button>
