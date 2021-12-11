@@ -1,9 +1,12 @@
 import React from 'react'
+import IndivisualProduct from './IndivisualProduct.js/IndivisualProduct'
 
 function Products() {
     return (
         <div>
-            <h1>Products</h1>
+            <IndivisualProduct/>
+            <IndivisualProduct/>
+            <IndivisualProduct/>
         </div>
     )
 }

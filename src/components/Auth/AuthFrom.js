@@ -68,7 +68,11 @@ function AuthFrom(props) {
               //   dispatch(logoutHandler())
               // }, 5000);
               
-              dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+5000}));
+              // console.log('[AuthForm.js]',newTime+10000000);
+              dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+100000000}));
+              setTimeout(() => {
+                dispatch(logoutHandler());
+              }, localStorage.getItem('timeout'));
             }
             navigate('/')
         }).catch(err=>{

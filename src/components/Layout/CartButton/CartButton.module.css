@@ -1,0 +1,29 @@
+.CartButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:7rem;
+    background-color:rgb(104, 35, 4);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    margin-top: -1rem;
+}
+.CartButton:hover,
+.CartButton:active {
+  background-color: #2c0d00;
+}
+.CartButton:hover .CartCount,
+.CartButton:active .CartCount{
+    background-color: sienna;
+}
+.CartButton i{
+    font-size: 1rem;
+}
+.CartButton .CartText{
+    font-size: 0.9rem;
+}
+.CartCount{
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding:0.2rem 0.5rem;
+}

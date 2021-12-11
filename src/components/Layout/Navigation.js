@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logoutHandler } from '../../store/actions/authActions';
+import CartButton from './CartButton/CartButton';
 import classes from './Navigation.module.css'
 function Navigation(props) {
     const dispatch=useDispatch();
@@ -22,7 +23,7 @@ function Navigation(props) {
                         <NavLink to="/products">Products</NavLink>
                     </li>}
                     {state.isLoggedIn && <li>
-                        <NavLink to="/cart">Cart</NavLink>
+                        <NavLink to="/cart"><CartButton/></NavLink>
                     </li>}
                     {!state.isLoggedIn && <li>
                         <NavLink to="/auth" style={{'marginleft':0}}>Login</NavLink>
