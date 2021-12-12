@@ -4,7 +4,7 @@ function Layout(props) {
     return (
         <div className={props.className?props.className:null}>
             <Navigation show={props.show}/>
-            <main style={{marginTop:'5rem'}}>{props.children}</main>
+            <main style={{marginTop:'3rem'}}>{props.children}</main>
         </div>
     )
 }

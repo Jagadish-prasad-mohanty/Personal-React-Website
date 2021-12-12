@@ -17,7 +17,7 @@ function App() {
   const [modalActive,setModalActive]=useState(false);
   const [status,setStatus]=useState('');
   const [message,setMessage]=useState('');
-  const state=useSelector(state=>state);
+  const state=useSelector(state=>state.auth);
   
   const showModal= (errMsg,sts) =>{
     setModalActive(true);

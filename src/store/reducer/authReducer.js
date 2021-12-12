@@ -1,12 +1,16 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import {LOG_IN,LOG_OUT} from '../actions/authActions';
-const initialState={
+
+
+
+const initialAuthState={
     userEmail:null,
     userToken:null,
     isLoggedIn:false,
     expTime:null
 }
+
+
 
 const remainingTimeCalc= (expTime) =>{
     const currTime=new Date().getTime();
@@ -15,7 +19,7 @@ const remainingTimeCalc= (expTime) =>{
     
 }
 
-const authReducer= (state=initialState,action)=>{
+const authReducer= (state=initialAuthState,action)=>{
 //     const userLoggedIn=!!state.token;
     const fetchedUserToken=localStorage.getItem('token');
     const fetchedUserName=localStorage.getItem('user');
@@ -70,5 +74,6 @@ const authReducer= (state=initialState,action)=>{
 
     }
 }
+
 
 export default authReducer

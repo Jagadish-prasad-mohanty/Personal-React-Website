@@ -7,8 +7,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import authReducer from './store/reducer/authReducer';
-
-const store=createStore(authReducer);
+import productReducer from './store/reducer/productReducer';
+import { combineReducers } from 'redux';
+const rootReducer= combineReducers(
+  {
+      auth:authReducer,
+      products:productReducer
+  }
+)
+const store=createStore(rootReducer);
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>

@@ -6,7 +6,7 @@ import CartButton from './CartButton/CartButton';
 import classes from './Navigation.module.css'
 function Navigation(props) {
     const dispatch=useDispatch();
-    const state=useSelector(state=>state);
+    const state=useSelector(state=>state.auth);
     const onLogoutHandler= () =>{
         console.log("[Navigation] logout done!!" );
         props.show("Logged out successfully.","complete")
@@ -26,10 +26,10 @@ function Navigation(props) {
                         <NavLink to="/cart"><CartButton/></NavLink>
                     </li>}
                     {!state.isLoggedIn && <li>
-                        <NavLink to="/auth" style={{'marginleft':0}}>Login</NavLink>
+                        <NavLink className={classes.AuthButton} to="/auth" style={{paddingTop:'0.2rem'}}>Login</NavLink>
                     </li>}
                     {state.isLoggedIn && <li>
-                        <button onClick={onLogoutHandler}>Logout</button>
+                        <button className={classes.AuthButton} onClick={onLogoutHandler}>Logout</button>
                     </li>}
                     {state.isLoggedIn && <li>
                         <NavLink to="/profile">

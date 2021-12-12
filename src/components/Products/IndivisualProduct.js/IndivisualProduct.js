@@ -3,24 +3,31 @@ import classes from './IndivisualProduct.module.css';
 import NaanImage from '../../../assets/image/naan.jpg';
 import Card from '../../UI/Card/Card'
 import Button from '../../UI/Button/Button';
-function IndivisualProduct() {
+import { addFevorite } from '../../../store/actions/productAction';
+import { useDispatch } from 'react-redux';
+
+function IndivisualProduct(props) {
+    const dispatch=useDispatch();
+    const productAddToCartHandler= () =>{
+        dispatch(addFevorite(props.id))
+    }
     return (
         <Card className={classes.Product}>
             <div className={classes.ProductImg}>
-                <img src={NaanImage}/>
+                <img src={props.imgLink}/>
             </div>
             <div className={classes.ProductDetails}>
                 <div className={classes.ProductDetail}>
-                    <h3>Tanduri Butter Naan</h3>
+                    <h3>{props.name}</h3>
                     <div className={classes.ProductSummary}>
-                        <p style={{color:'blue'}}>Rasmi Hotel</p>
-                        <p><i>30 Rupee /-</i> </p>
+                        <p style={{color:'blue'}}>{props.hotelName}</p>
+                        <p><i>{props.price} Rupee /-</i> </p>
                     </div>
                 </div>
                 <div className={classes.ProductButtons}>
-
-                <Button btnName="Add to Cart"/>
-                <Button btnName="Details"/>
+                
+                {!props.forCart && <Button btnName="Add to Cart" onclick={productAddToCartHandler}/>}
+                {!props.forCart && <Button btnName="Details"/>}
                 </div>
 
             </div>
