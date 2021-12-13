@@ -1,4 +1,10 @@
 import NaanImage from '../../assets/image/naan.jpg';
+import ButterChickenImage from '../../assets/image/butter-chicken.jpg';
+import ButterPaneerImage from '../../assets/image/butter-chicken.jpg';
+import ChilliChickenImage from '../../assets/image/chilli-chicken.jpg';
+import ChilliMushroomImage from '../../assets/image/chilli-mushroom.jpg';
+import MuttonKassaImage from '../../assets/image/mutton-kassa.jpg';
+import TandooriRotiImage from '../../assets/image/tandoori-roti.jpg';
 import React from 'react';
 import { ADD_FEVORITE } from '../actions/productAction';
 const initialProductState={
@@ -15,7 +21,7 @@ const initialProductState={
             id:"2",
             name:'Tanduri Roti',
             price:15,
-            image:NaanImage,
+            image:TandooriRotiImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         },
@@ -23,7 +29,7 @@ const initialProductState={
             id:"3",
             name:'Paneer Butter Masala',
             price:140,
-            image:NaanImage,
+            image:ButterPaneerImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         },
@@ -31,7 +37,7 @@ const initialProductState={
             id:"4",
             name:'Chili Mushroom',
             price:150,
-            image:NaanImage,
+            image:ChilliMushroomImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         },
@@ -39,7 +45,7 @@ const initialProductState={
             id:"5",
             name:'Chicken Chili',
             price:120,
-            image:NaanImage,
+            image:ChilliChickenImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         },
@@ -47,7 +53,7 @@ const initialProductState={
             id:"6",
             name :"Mutton Kassa",
             price:250,
-            image:NaanImage,
+            image:MuttonKassaImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         },
@@ -55,7 +61,7 @@ const initialProductState={
             id:"7",
             name:'Chicken Butter Masala',
             price:140,
-            image:NaanImage,
+            image:ButterChickenImage,
             hotelName:"Rasmi Hotel",
             isFev:false
         }
