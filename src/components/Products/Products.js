@@ -1,8 +1,10 @@
 import React,{useEffect, useState} from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from './IndivisualProduct.js/IndivisualProduct'
 import Spinner from '../UI/Spinner/Spinner';
+import { initiateProducts } from '../../store/actions/productAction';
 function Products() {
+    const dispatch=useDispatch();
     // const products= useSelector(state=>state.products);
     let [products,setProducts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
@@ -20,7 +22,7 @@ function Products() {
             const fetchedProducts=[];
             for (let key in data ){
                 fetchedProducts.push({
-                    id:key,
+                    id:data[key].id,
                     name:data[key].name,
                     price:data[key].price,
                     image:data[key].image,
@@ -28,13 +30,17 @@ function Products() {
                     isFev:data[key].isFev
                 })
             }
-            setProducts(fetchedProducts)
+            setProducts(fetchedProducts);
+        
+            // dispatch(initiateProducts(fetchedProducts))
         });
     }, [])
     const productItems= products.map(item=><IndivisualProduct key={item.id} id={item.id} name={item.name} price={item.price} imgLink={item.image} hotelName={item.hotelName} forCart={false}/>)
     return (
         <div>
-            {isLoading && <Spinner/>}
+            {isLoading && <div style={{height:'80vh',display:'grid', alignItems:'center'}}>
+            <Spinner/>
+            </div>}
             {!isLoading && productItems}
         </div>
     )

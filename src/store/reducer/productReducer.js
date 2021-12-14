@@ -6,8 +6,8 @@ import ChilliMushroomImage from '../../assets/image/chilli-mushroom.jpg';
 import MuttonKassaImage from '../../assets/image/mutton-kassa.jpg';
 import TandooriRotiImage from '../../assets/image/tandoori-roti.jpg';
 import React from 'react';
-import { ADD_FEVORITE } from '../actions/productAction';
-const initialProductState={
+import { ADD_FEVORITE,INITIATE_PRODUCTS } from '../actions/productAction';
+let initialProductState={
     products:[
         {
             id:"1",
@@ -68,14 +68,44 @@ const initialProductState={
 
     ]
 }
+// const fetchMeals= async ()=>{
+//     const response=await fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json");
+//     const data=await response.json();
+//     // setIsLoading(false);
+//     return data
+// }
+// fetchMeals().then((data)=>{
+//         const fetchedProducts=[];
+//         for (let key in data ){
+//             fetchedProducts.push({
+//                 id:data[key].id,
+//                 name:data[key].name,
+//                 price:data[key].price,
+//                 image:data[key].image,
+//                 hotelName:data[key].hotelName,
+//                 isFev:data[key].isFev
+//             })
+//         }
+//         console.log("[productReducer-> fetchedOroduct]",fetchedProducts);
+//         // setProducts(fetchedProducts);
+//         initialProductState={...fetchedProducts}
+    
+//         // dispatch(initiateProducts(fetchedProducts))
+//     });
 
 const productReducer= (state=initialProductState,action) =>{
     switch(action.type){
+        // case INITIATE_PRODUCTS:
+        //     console.log("[productReducer]",action.products);
+        //     return {
+        //         ...state,
+        //         products:action.products
+        //     }
         case ADD_FEVORITE:
             const updatedProducts=[...state.products];
             console.log(updatedProducts);
             const updatedProductIndex=updatedProducts.findIndex(item=>{ 
-                // console.log(item.id); 
+                console.log(item.id,action.id); 
                 return action.id===item.id
             });
             console.log(updatedProductIndex,action.id);
