@@ -5,6 +5,7 @@ import Input from "../UI/Input/Input";
 
 import {useDispatch, useSelector} from 'react-redux'
 import { loginHandler, logoutHandler } from "../../store/actions/authActions";
+import { initiateProducts } from "../../store/actions/cartAction";
 import { useNavigate } from "react-router";
 function AuthFrom(props) {
   const [isSignIn, setIsSignIn] = useState(false);
@@ -12,6 +13,7 @@ function AuthFrom(props) {
     const navigate=useNavigate();
     const dispatch=useDispatch();
   // const state = useSelector(state => state)
+  // const dispatch=useDispatch();
   const changeLoggedStatusHandler = () => {
     setIsSignIn((prevState) => !prevState);
   };
@@ -21,6 +23,8 @@ function AuthFrom(props) {
   const passRef = useRef();
 
   const formSubmitHandler = () => {
+    // const dispatch=useDispatch();
+    // dispatch(initiateProducts())
     let currentName;
     const currentEmail= emailRef.current.value;
     const currentPass= passRef.current.value;

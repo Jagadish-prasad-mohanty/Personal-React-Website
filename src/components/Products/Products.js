@@ -2,7 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from './IndivisualProduct.js/IndivisualProduct'
 import Spinner from '../UI/Spinner/Spinner';
-import { initiateProducts } from '../../store/actions/productAction';
+import { initiateProducts } from '../../store/actions/cartAction';
 function Products() {
     const dispatch=useDispatch();
     // const products= useSelector(state=>state.products);
@@ -13,6 +13,9 @@ function Products() {
     useEffect( () => {
         const fetchMeals= async ()=>{
         const response=await fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json");
+        if (!response.ok){
+            throw new Error("Something went wrong!!");
+        }
         const data=await response.json();
         setIsLoading(false);
         return data

@@ -27,7 +27,7 @@
     justify-content: space-around;
 }
 .ProductButtons{
-    width:30%;
+    width:15rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
