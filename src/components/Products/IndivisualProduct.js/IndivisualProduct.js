@@ -3,10 +3,11 @@ import classes from './IndivisualProduct.module.css';
 import NaanImage from '../../../assets/image/naan.jpg';
 import Card from '../../UI/Card/Card'
 import Button from '../../UI/Button/Button';
-import { addFevorite, removeFevorite } from '../../../store/actions/cartAction';
-import { useDispatch } from 'react-redux';
+import { addFevorite, incrFevorite, removeFevorite } from '../../../store/actions/cartAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 function IndivisualProduct(props) {
+    const cart=useSelector(state=>state.cart.cart)
     const dispatch=useDispatch();
     const productAddToCartHandler= () =>{
         dispatch(addFevorite({id:props.id,price:props.price}))
@@ -14,6 +15,10 @@ function IndivisualProduct(props) {
     const productRemoveFromCartHandler= () =>{
         dispatch(removeFevorite(props.id))
     }
+    const productIncrOfCartHandler= ()=>{
+        dispatch(incrFevorite({id:props.id,price:props.price}))
+    }
+    const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (
         <Card className={classes.Product}>
             <div className={classes.ProductImg}>
@@ -27,13 +32,19 @@ function IndivisualProduct(props) {
                         <p><i>{props.price} Rupee /-</i> </p>
                     </div>
                 </div>
-                <div className={classes.ProductButtons}>
+                {!props.forCart && <div className={classes.ProductButtons}>
                 
-                {!props.forCart && <Button btnName="Add to Cart" onclick={productAddToCartHandler}/>}
-                {!props.forCart && <Button btnName="Details"/>}
-                {props.forCart && <h3>Count : {props.count}</h3>}
-                {props.forCart && <Button btnName="Remove Item" onclick={productRemoveFromCartHandler}/>}
-                </div>
+                 <Button btnName={inCart?"Item in Cart":"Add to Cart"} onclick={productAddToCartHandler}/>
+                 <Button btnName="Details"/>
+                
+                
+                </div>}
+                {props.forCart && <p className={classes.Count}><i class="fas fa-times"></i> {props.count}</p>}
+                {props.forCart && <div className={classes.IncrDecrBtn}>
+
+               <Button btnName="+" onclick={productIncrOfCartHandler}/>
+                 <Button btnName="-" onclick={productRemoveFromCartHandler}/>
+                </div>}
 
             </div>
         

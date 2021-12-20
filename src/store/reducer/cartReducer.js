@@ -6,7 +6,7 @@ import ChilliMushroomImage from '../../assets/image/chilli-mushroom.jpg';
 import MuttonKassaImage from '../../assets/image/mutton-kassa.jpg';
 import TandooriRotiImage from '../../assets/image/tandoori-roti.jpg';
 import React from 'react';
-import { ADD_TO_CART,REMOVE_FROM_CART } from '../actions/cartAction';
+import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART } from '../actions/cartAction';
 let initialCartState={
     cart:[],
     totalCount:0,
@@ -38,8 +38,27 @@ const cartReducer= (state=initialCartState,action) =>{
     let newTotal;
     let index;
     switch(action.type){
-        
         case ADD_TO_CART:
+            updatedCart=[...state.cart];
+            index=updatedCart.findIndex(item=>item.id===action.productData.id)
+            if (index===-1){
+                updatedCart.push({id:action.productData.id,count:1,price:action.productData.price});
+                newCount=state.totalCount+1;
+                newTotal=state.totalAmount+action.productData.price;
+            }
+            else{
+                alert("Product is already in the Cart")
+                return state
+            }
+            
+           
+            return {
+                ...state,
+                cart:updatedCart,
+                totalCount:newCount,
+                totalAmount:newTotal
+            }
+        case INCR_THE_CART:
             // const updatedProducts=[...state.products];
             // console.log("[productReducer-> fetchedOroduct3]",updatedProducts);
             // const updatedProductIndex=updatedProducts.findIndex(item=>{ 
