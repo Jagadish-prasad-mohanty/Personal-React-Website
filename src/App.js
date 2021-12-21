@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import ErrorModal from './components/UI/Error/ErrorModal';
 import Profile from './components/Profile/Profile'
 import {useSelector } from 'react-redux';
+import ProductDetails from './components/Products/ProductDetails/ProductDetails';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -39,6 +40,7 @@ function App() {
         {state.isLoggedIn && <Route path="/cart" element={<CartPage/>}/>}
         <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
         {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
+        {state.isLoggedIn && <Route path="/product-details" element={<ProductDetails/>}/>}
         <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       

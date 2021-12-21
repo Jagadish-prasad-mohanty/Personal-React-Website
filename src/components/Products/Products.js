@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import IndivisualProduct from './IndivisualProduct.js/IndivisualProduct'
+import IndivisualProduct from './IndivisualProduct/IndivisualProduct'
 import Spinner from '../UI/Spinner/Spinner';
 import { initiateProducts } from '../../store/actions/cartAction';
 function Products() {

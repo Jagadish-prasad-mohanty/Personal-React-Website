@@ -1,0 +1,25 @@
+.productImage{
+    width: 50%;
+    /* overflow: hidden; */
+    /* background-color : aqua; */
+}
+.productImage img{
+    width: 90%;
+    align-items: center;    
+    border-radius: 1rem;
+}
+
+.productDetails{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 30rem;
+    /* background-color: bisque; */
+}
+.productControls{
+    background-color : rgb(104, 35, 4);
+    width: 100%;
+    height: 15vh;
+    margin-top: 0.5rem;
+}

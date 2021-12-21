@@ -5,8 +5,10 @@ import Card from '../../UI/Card/Card'
 import Button from '../../UI/Button/Button';
 import { addFevorite, incrFevorite, removeFevorite } from '../../../store/actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 function IndivisualProduct(props) {
+    const navigate=useNavigate();
     const cart=useSelector(state=>state.cart.cart)
     const dispatch=useDispatch();
     const productAddToCartHandler= () =>{
@@ -17,6 +19,9 @@ function IndivisualProduct(props) {
     }
     const productIncrOfCartHandler= ()=>{
         dispatch(incrFevorite({id:props.id,price:props.price}))
+    }
+    const showProductDetails=()=>{
+        navigate('/product-details')
     }
     const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (
@@ -35,7 +40,7 @@ function IndivisualProduct(props) {
                 {!props.forCart && <div className={classes.ProductButtons}>
                 
                  <Button btnName={inCart?"Item in Cart":"Add to Cart"} onclick={productAddToCartHandler}/>
-                 <Button btnName="Details"/>
+                 <Button btnName="Details" onclick={showProductDetails}/>
                 
                 
                 </div>}

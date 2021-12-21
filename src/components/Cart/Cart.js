@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import IndivisualProduct from '../Products/IndivisualProduct.js/IndivisualProduct';
+import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
 import Spinner from '../UI/Spinner/Spinner';
 function Cart() {
     //* use redux state(part of state mkeans cart) *
