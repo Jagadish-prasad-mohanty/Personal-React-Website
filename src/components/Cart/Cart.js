@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
+import Modal from '../UI/Modal/Modal';
+
 import Spinner from '../UI/Spinner/Spinner';
+import classes from './Cart.module.css';
+import CartSection from './CartSection';
 function Cart() {
     //* use redux state(part of state mkeans cart) *
     const cartProducts=useSelector(state=>state.cart.cart);
+
+    //use State for check out modal
+    const [checkOurModal,setCheckOutModal]=useState(false);
     //**Fetch data from api (product data) */
     const [products,setProducts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
@@ -37,6 +44,14 @@ function Cart() {
         })
     }, [])
 
+    const openCheckOutHandler= () =>{
+        setCheckOutModal(true);
+        console.log("[checkout Modal opened]")
+    }
+    const closeCheckOutModalHandler =()=>{
+        setCheckOutModal(false);
+    }
+
     //** setting the cart product data* */
     // const cartProducts=products.products.filter(item=>item.isFev);
     console.log("[Cart.js -> cartProducts]",cartProducts);
@@ -54,10 +69,16 @@ function Cart() {
 
         {!cartProductItems.length && <h2>Start adding into to Cart</h2>}
         {cartProductItems}
+        {cartProductItems.length!==0 && <CartSection openCheckOut={openCheckOutHandler}/>}
     </div>
+    
     return (
-        <div>
+        <div className={classes.Cart}>
+        {checkOurModal && <Modal closeModal={closeCheckOutModalHandler}>
+            <h2>Hi There</h2>
+        </Modal>}
             {CartPageContent}
+            
         </div>
     )
 }

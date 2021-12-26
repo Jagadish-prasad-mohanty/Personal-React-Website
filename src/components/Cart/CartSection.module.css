@@ -1,0 +1,31 @@
+.cartSection{
+    position: absolute;
+    right: 5rem;
+}
+.PriceSection{
+    /* text-align: right; */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    border-radius: 0.5rem;
+    gap: 4rem;
+    padding: 1rem;
+    border: 2px solid var(--brown);
+}
+.pLeft{
+    color: var(--brown);
+    width: 8rem;
+    text-align: right;
+}
+.pRight{
+    text-align: left;
+}
+.cartBtn{
+    display: flex;
+    align-items: center;
+    width: 15rem;
+    justify-content: center;
+    gap: 1rem;
+}
