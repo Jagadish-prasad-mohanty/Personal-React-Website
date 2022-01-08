@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
 import Modal from '../UI/Modal/Modal';
 
@@ -9,12 +9,13 @@ import CartSection from './CartSection';
 function Cart() {
     //* use redux state(part of state mkeans cart) *
     const cartProducts=useSelector(state=>state.cart.cart);
-
+    
     //use State for check out modal
     const [checkOurModal,setCheckOutModal]=useState(false);
     //**Fetch data from api (product data) */
     const [products,setProducts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
+    
     useEffect(()=>{
         const fetchMeals= async ()=>{
             const response=await fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json");
@@ -22,12 +23,14 @@ function Cart() {
                 throw new Error("Something went wrong!!");
             }
             const data=await response.json();
-            setIsLoading(false)
+            setIsLoading(false);
             return data;
         }
         setIsLoading(true)
         fetchMeals().then(data=>{
+            
             console.log("[Cart.js -> fetch product data]",data);
+            
             const productItems=[];
             for (let key in data){
                 const productItem={
@@ -43,6 +46,8 @@ function Cart() {
             setProducts(productItems);
         })
     }, [])
+
+    
 
     const openCheckOutHandler= () =>{
         setCheckOutModal(true);

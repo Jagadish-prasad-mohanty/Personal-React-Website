@@ -8,20 +8,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 function IndivisualProduct(props) {
+    const currentUser=localStorage.getItem('user');
+    console.log("INdPeoduct -> userToken",currentUser);
     const navigate=useNavigate();
     const cart=useSelector(state=>state.cart.cart)
     const dispatch=useDispatch();
     const productAddToCartHandler= () =>{
-        dispatch(addFevorite({id:props.id,price:props.price}))
+        dispatch(addFevorite({id:props.id,price:props.price,currentUser:currentUser}))
     }
     const productRemoveFromCartHandler= () =>{
-        dispatch(removeFevorite(props.id))
+        dispatch(removeFevorite({id:props.id,currentUser:currentUser}))
     }
     const productIncrOfCartHandler= ()=>{
-        dispatch(incrFevorite({id:props.id,price:props.price}))
+        dispatch(incrFevorite({id:props.id,price:props.price,currentUser:currentUser}))
     }
     const showProductDetails=()=>{
-        navigate('/product-details')
+        navigate('/product-details',{replace:false})
     }
     const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (

@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 // import { useHistory } from 'react-router';
 function Profile(props) {
     const navigate=useNavigate();
-    const email=useSelector(state=>state.auth.userEmail);
+    const email=localStorage.getItem('user');
+
     const userToken=useSelector(state=>state.auth.userToken);
      const [isLoading,setIsLoading] =useState(false);
     const newPassRef=useRef();

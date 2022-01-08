@@ -1,12 +1,4 @@
-import NaanImage from '../../assets/image/naan.jpg';
-import ButterChickenImage from '../../assets/image/butter-chicken.jpg';
-import ButterPaneerImage from '../../assets/image/butter-chicken.jpg';
-import ChilliChickenImage from '../../assets/image/chilli-chicken.jpg';
-import ChilliMushroomImage from '../../assets/image/chilli-mushroom.jpg';
-import MuttonKassaImage from '../../assets/image/mutton-kassa.jpg';
-import TandooriRotiImage from '../../assets/image/tandoori-roti.jpg';
-import React from 'react';
-import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART } from '../actions/cartAction';
+import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART } from '../actions/cartAction';
 let initialCartState={
     cart:[],
     totalCount:0,
@@ -33,19 +25,60 @@ let initialCartState={
 // // console.log("[productReducer-> fetchedOroduct]2",initialProductState);
 const cartReducer= (state=initialCartState,action) =>{
     console.log("[productReducer-> fetchedOroduct]4",state);
+    console.log("cartreducer -> productData",action.productData);
+   
     let updatedCart;
     let newCount;
     let newTotal;
     let index;
+    const updatedTotalCart={};
+    let currentUser;
     switch(action.type){
+        case INITIATE_CART:
+            console.log("[cartReducer -> initialCart]",action.initialCart);
+            if (!action.initialCart.cart){
+                return state;
+            }
+            return {
+                ...state,
+                cart:action.initialCart.cart,
+                totalCount:action.initialCart.totalCount,
+                totalPrice:action.initialCart.totalPrice
+            }
         case ADD_TO_CART:
+            currentUser=action.productData.currentUser
             updatedCart=[...state.cart];
-            index=updatedCart.findIndex(item=>item.id===action.productData.id)
+            index=updatedCart.findIndex(item=>item.id===action.productData.id);
             if (index===-1){
-                updatedCart.push({id:action.productData.id,count:1,price:action.productData.price});
+                const newItem={
+                    id:action.productData.id,
+                    count:1,
+                    price:action.productData.price
+                }
+                updatedCart.push(newItem);
                 newCount=state.totalCount+1;
                 newTotal=state.totalAmount+action.productData.price;
+                // updatedTotalCart={
+                //     cart:updatedCart,
+                //     totalCount:newCount,
+                //     totalAmount:newTotal
+                // }
+                updatedTotalCart['cart']=updatedCart;
+                updatedTotalCart[ 'totalCount']=newCount;
+                updatedTotalCart['totalAmount']=newTotal;
+                fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
+                    method:'PUT',
+                    body:JSON.stringify(updatedTotalCart),
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                }).then(response=>response.json()).then(resData=>{
+                    console.log("[Send Cart Response Data]",resData);
+                }).catch(error=>{
+
+                });
             }
+
             else{
                 alert("Product is already in the Cart")
                 return state
@@ -54,11 +87,10 @@ const cartReducer= (state=initialCartState,action) =>{
            
             return {
                 ...state,
-                cart:updatedCart,
-                totalCount:newCount,
-                totalAmount:newTotal
+                ...updatedTotalCart
             }
         case INCR_THE_CART:
+            currentUser=action.productData.currentUser
             // const updatedProducts=[...state.products];
             // console.log("[productReducer-> fetchedOroduct3]",updatedProducts);
             // const updatedProductIndex=updatedProducts.findIndex(item=>{ 
@@ -74,9 +106,10 @@ const cartReducer= (state=initialCartState,action) =>{
             // ** Add data to cart **
             updatedCart=[...state.cart];
             //action.productData={id:'id'}
-            index=updatedCart.findIndex(item=>item.id===action.productData.id)
+            index=updatedCart.findIndex(item=>item.id===action.productData.id);
             if (index===-1){
                 updatedCart.push({id:action.productData.id,count:1,price:action.productData.price});
+                
             }
             else{
                 const updatedItem={...updatedCart[index],
@@ -98,16 +131,30 @@ const cartReducer= (state=initialCartState,action) =>{
             //         "Content-Type": "application/json",
             //     }
 
+        
             // }).then((response)=>response.json()).then((data)=>{
             //     console.log(data);
             // });
+            updatedTotalCart['cart']=updatedCart;
+            updatedTotalCart[ 'totalCount']=newCount;
+            updatedTotalCart['totalAmount']=newTotal;
+            fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
+                    method:'PUT',
+                    body:JSON.stringify(updatedTotalCart),
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                }).then(response=>response.json()).then(resData=>{
+                    console.log("[Send Cart Response Data]",resData);
+                }).catch(error=>{
+
+                });
             return {
                 ...state,
-                cart:updatedCart,
-                totalCount:newCount,
-                totalAmount:newTotal
+                ...updatedTotalCart
             }
         case REMOVE_FROM_CART:
+            currentUser=action.productData.currentUser
             // const updatedProducts=[...state.products];
             // console.log("[productReducer-> fetchedOroduct3]",updatedProducts);
             // const updatedProductIndex=updatedProducts.findIndex(item=>{ 
@@ -123,24 +170,24 @@ const cartReducer= (state=initialCartState,action) =>{
             // ** Remove data to cart **
             updatedCart=[...state.cart];
             //action.productData={id:'id'}
-            index=updatedCart.findIndex(item=>item.id===action.productData.id)
+            index=updatedCart.findIndex(item=>item.id===action.productData.id);
             const priceOfItem=updatedCart[index].price/updatedCart[index].count;
             if (index!==-1){
                 if(updatedCart[index].count===1){
-                    updatedCart=updatedCart.filter(item=>item.id!==action.productData.id)
+                    updatedCart=updatedCart.filter(item=>item.id!==action.productData.id);
                 }else{
                     const updatedItem={...updatedCart[index],
                         count:updatedCart[index].count-1,
                         price:updatedCart[index].price-priceOfItem}
-                    newTotal=state.totalAmount-priceOfItem;
+                   
                     updatedCart[index]=updatedItem;
                 
+                }
+                    
+                newTotal=state.totalAmount-priceOfItem;
+                newCount=state.totalCount-1;
             }
                 
-            
-            newCount=state.totalCount-1;
-        }
-            
             //// **send cart data with user to api **
             // fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Cart.json",
             // {
@@ -156,11 +203,23 @@ const cartReducer= (state=initialCartState,action) =>{
             // }).then((response)=>response.json()).then((data)=>{
             //     console.log(data);
             // });
+            updatedTotalCart['cart']=updatedCart;
+            updatedTotalCart[ 'totalCount']=newCount;
+            updatedTotalCart['totalAmount']=newTotal;
+            fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
+                    method:'PUT',
+                    body:JSON.stringify(updatedTotalCart),
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                }).then(response=>response.json()).then(resData=>{
+                    console.log("[Send Cart Response Data]",resData);
+                }).catch(error=>{
+
+                });
             return {
                 ...state,
-                cart:updatedCart,
-                totalCount:newCount,
-                totalAmount:newTotal
+                ...updatedTotalCart
             }
         default:
             return state

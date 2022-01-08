@@ -1,5 +1,6 @@
-import React from 'react'
+import React  from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { logoutHandler } from '../../store/actions/authActions';
 import CartButton from './CartButton/CartButton';
@@ -7,10 +8,13 @@ import classes from './Navigation.module.css'
 function Navigation(props) {
     const dispatch=useDispatch();
     const state=useSelector(state=>state.auth);
+    const navigate=useNavigate();
     const onLogoutHandler= () =>{
         console.log("[Navigation] logout done!!" );
         props.show("Logged out successfully.","complete")
         dispatch(logoutHandler());
+        navigate('/auth')
+
     }
     return (
         <>

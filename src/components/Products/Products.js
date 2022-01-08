@@ -2,13 +2,13 @@ import React,{useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from './IndivisualProduct/IndivisualProduct'
 import Spinner from '../UI/Spinner/Spinner';
-import { initiateProducts } from '../../store/actions/cartAction';
+import { initiateCart } from '../../store/actions/cartAction';
 function Products() {
-    const dispatch=useDispatch();
+    const [currentUser,setCurrentUser]=useState('');
     // const products= useSelector(state=>state.products);
     let [products,setProducts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
-    
+    const dispatch=useDispatch();
 
     useEffect( () => {
         const fetchMeals= async ()=>{
@@ -22,6 +22,7 @@ function Products() {
         }
         setIsLoading(true)
         fetchMeals().then((data)=>{
+            setCurrentUser(localStorage.getItem('user'));
             const fetchedProducts=[];
             for (let key in data ){
                 fetchedProducts.push({
@@ -38,6 +39,17 @@ function Products() {
             // dispatch(initiateProducts(fetchedProducts))
         });
     }, [])
+
+    useEffect(() => {
+        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`
+          ).then(response=>response.json()).then(resData=>{
+            console.log("initiateCart -> Cart.js",resData);
+            console.log("[Cart.js -> currentUser]",currentUser);
+              dispatch(initiateCart(resData))
+          }).catch(error=>{
+  
+          });
+      }, [dispatch,currentUser])
     const productItems= products.map(item=><IndivisualProduct key={item.id} id={item.id} name={item.name} price={item.price} imgLink={item.image} hotelName={item.hotelName} forCart={false}/>)
     return (
         <div>

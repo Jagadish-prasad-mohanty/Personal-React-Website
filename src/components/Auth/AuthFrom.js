@@ -1,4 +1,4 @@
-import React, {  useReducer, useRef, useState } from "react";
+import React, {  useReducer, useRef, useState,useEffect } from "react";
 import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import Input from "../UI/Input/Input";
@@ -6,12 +6,14 @@ import Input from "../UI/Input/Input";
 import {useDispatch, useSelector} from 'react-redux'
 import { loginHandler, logoutHandler } from "../../store/actions/authActions";
 import { initiateProducts } from "../../store/actions/cartAction";
-import { useNavigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
+import { initiateCart } from "../../store/actions/cartAction";
 function AuthFrom(props) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
     const navigate=useNavigate();
     const dispatch=useDispatch();
+    
   // const state = useSelector(state => state)
   // const dispatch=useDispatch();
   const changeLoggedStatusHandler = () => {
@@ -64,6 +66,7 @@ function AuthFrom(props) {
             }
             
         }).then(data=>{
+            
             console.log(data);
             props.show("Success!!",'complete');
             if (isSignIn){
@@ -74,20 +77,28 @@ function AuthFrom(props) {
               
               // console.log('[AuthForm.js]',newTime+10000000);
               dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+100000000}));
+              navigate('/products')
               setTimeout(() => {
                 dispatch(logoutHandler());
               }, localStorage.getItem('timeout'));
+
+              
             }
-            navigate('/')
+            
+            
+            
         }).catch(err=>{
           // "Authentication Failed!! Please check Email & Password"
           console.log("[authform]",err.message);
             props.show(err.message,'error')
         })
+      };
       
     // console.log(currentNameRef, currentEmailRef,currentPassRef);
+    // if (localStorage.getItem('user'))
     
-  };
+    
+  
   return (
     <Card>
       <h3>{isSignIn ? "SignIn" : "SignUp"}</h3>
