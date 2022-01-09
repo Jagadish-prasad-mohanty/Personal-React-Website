@@ -40,16 +40,7 @@ function Products() {
         });
     }, [])
 
-    useEffect(() => {
-        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`
-          ).then(response=>response.json()).then(resData=>{
-            console.log("initiateCart -> Cart.js",resData);
-            console.log("[Cart.js -> currentUser]",currentUser);
-              dispatch(initiateCart(resData))
-          }).catch(error=>{
-  
-          });
-      }, [dispatch,currentUser])
+    
     const productItems= products.map(item=><IndivisualProduct key={item.id} id={item.id} name={item.name} price={item.price} imgLink={item.image} hotelName={item.hotelName} forCart={false}/>)
     return (
         <div>

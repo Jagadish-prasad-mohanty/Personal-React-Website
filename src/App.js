@@ -46,7 +46,7 @@ function App() {
         <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
         {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
         {state.isLoggedIn && <Route path="/product-details" element={<ProductDetails/>}/>}
-        {/* <Route path='*' element={<Navigate to="/"/>}/> */}
+        <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       
     </Layout>

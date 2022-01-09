@@ -2,7 +2,7 @@ import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART } from '../act
 let initialCartState={
     cart:[],
     totalCount:0,
-    totalAmount:0
+    totalAmount:0,
 }
 // fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json").then((response)=>response.json()).then((data)=>{
 //         const fetchedProducts=[];
@@ -36,6 +36,10 @@ const cartReducer= (state=initialCartState,action) =>{
     switch(action.type){
         case INITIATE_CART:
             console.log("[cartReducer -> initialCart]",action.initialCart);
+            let totalAmount=0;
+            action.initialCart.cart.forEach(item=>{
+                totalAmount+=item.price
+            })
             if (!action.initialCart.cart){
                 return state;
             }
@@ -43,7 +47,7 @@ const cartReducer= (state=initialCartState,action) =>{
                 ...state,
                 cart:action.initialCart.cart,
                 totalCount:action.initialCart.totalCount,
-                totalPrice:action.initialCart.totalPrice
+                totalAmount:totalAmount
             }
         case ADD_TO_CART:
             currentUser=action.productData.currentUser

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
 import Modal from '../UI/Modal/Modal';
-
+import {initiateCart} from '../../store/actions/cartAction'
+import CheckOut from './CheckOut';
 import Spinner from '../UI/Spinner/Spinner';
 import classes from './Cart.module.css';
 import CartSection from './CartSection';
@@ -15,6 +16,19 @@ function Cart() {
     //**Fetch data from api (product data) */
     const [products,setProducts]=useState([]);
     const [isLoading,setIsLoading]=useState(false);
+    const dispatch= useDispatch();
+    const currentUser= localStorage.getItem('user');
+    
+      useEffect(()=>{
+        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`
+          ).then(response=>response.json()).then(resData=>{
+            console.log("initiateCart -> CartAction.js",resData);
+            console.log("[CartAction.js -> currentUser]",currentUser);
+              dispatch(initiateCart(resData));
+          }).catch(error=>{
+            console.log(error.message);
+          });
+      },[])
     
     useEffect(()=>{
         const fetchMeals= async ()=>{
@@ -79,9 +93,8 @@ function Cart() {
     
     return (
         <div className={classes.Cart}>
-        {checkOurModal && <Modal closeModal={closeCheckOutModalHandler}>
-            <h2>Hi There</h2>
-        </Modal>}
+        {checkOurModal && <CheckOut closeModal={closeCheckOutModalHandler} products={products}>
+        </CheckOut>}
             {CartPageContent}
             
         </div>

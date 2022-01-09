@@ -5,12 +5,13 @@ import Input from "../UI/Input/Input";
 
 import {useDispatch, useSelector} from 'react-redux'
 import { loginHandler, logoutHandler } from "../../store/actions/authActions";
-import { initiateProducts } from "../../store/actions/cartAction";
+import { fetchCart, initiateProducts } from "../../store/actions/cartAction";
 import { Navigate, useNavigate } from "react-router";
 import { initiateCart } from "../../store/actions/cartAction";
 function AuthFrom(props) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
+ 
     const navigate=useNavigate();
     const dispatch=useDispatch();
     
@@ -23,7 +24,8 @@ function AuthFrom(props) {
   const nameRef = useRef();
   const emailRef = useRef();
   const passRef = useRef();
-
+ 
+  
   const formSubmitHandler = () => {
     // const dispatch=useDispatch();
     // dispatch(initiateProducts())
@@ -77,6 +79,7 @@ function AuthFrom(props) {
               
               // console.log('[AuthForm.js]',newTime+10000000);
               dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+100000000}));
+      
               navigate('/products')
               setTimeout(() => {
                 dispatch(logoutHandler());
