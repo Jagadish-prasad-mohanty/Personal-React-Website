@@ -16,8 +16,8 @@
 }
 .pLeft{
     color: var(--brown);
-    width: 8rem;
-    text-align: right;
+    width: 6rem;
+    text-align: left;
 }
 .pRight{
     text-align: left;

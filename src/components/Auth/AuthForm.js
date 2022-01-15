@@ -8,7 +8,8 @@ import { loginHandler, logoutHandler } from "../../store/actions/authActions";
 import { fetchCart, initiateProducts } from "../../store/actions/cartAction";
 import { Navigate, useNavigate } from "react-router";
 import { initiateCart } from "../../store/actions/cartAction";
-function AuthFrom(props) {
+import classes from './AuthForm.module.css';
+function AuthForm(props) {
   const [isSignIn, setIsSignIn] = useState(false);
   const [isLoading,setIsLoading] =useState(false);
  
@@ -78,7 +79,7 @@ function AuthFrom(props) {
               // }, 5000);
               
               // console.log('[AuthForm.js]',newTime+10000000);
-              dispatch(loginHandler({userToken:data.idToken,userName:data.email,expTime:newTime+100000000}));
+              dispatch(loginHandler({userToken:data.idToken,userEmail:data.email,expTime:newTime+100000000}));
       
               navigate('/products')
               setTimeout(() => {
@@ -103,7 +104,7 @@ function AuthFrom(props) {
     
   
   return (
-    <Card>
+    <Card className={classes.AuthForm}>
       <h3>{isSignIn ? "SignIn" : "SignUp"}</h3>
       {!isSignIn && 
       <Input 
@@ -140,4 +141,4 @@ function AuthFrom(props) {
   );
 }
 
-export default AuthFrom;
+export default AuthForm;

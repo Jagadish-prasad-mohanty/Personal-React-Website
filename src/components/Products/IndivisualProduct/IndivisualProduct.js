@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 function IndivisualProduct(props) {
-    const currentUser=localStorage.getItem('user');
+    const currentUser=localStorage.getItem('user').split(".")[0];
     console.log("INdPeoduct -> userToken",currentUser);
     const navigate=useNavigate();
     const cart=useSelector(state=>state.cart.cart)

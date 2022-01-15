@@ -4,10 +4,12 @@ import {LOG_IN,LOG_OUT} from '../actions/authActions';
 
 
 const initialAuthState={
+    userName:null,
     userEmail:null,
     userToken:null,
     isLoggedIn:false,
-    expTime:null
+    expTime:null,
+    userAddress:null
 }
 
 
@@ -35,7 +37,7 @@ const authReducer= (state=initialAuthState,action)=>{
     switch(action.type){
         case LOG_IN:
             const newToken=action.userData.userToken;
-            const newUser=action.userData.userName.substr(0,action.userData.userName.length-10);
+            const newUser=action.userData.userEmail;
             localStorage.setItem('token',newToken);
             localStorage.setItem('user',newUser);
             const timeOut=remainingTimeCalc(action.userData.expTime);
@@ -61,6 +63,7 @@ const authReducer= (state=initialAuthState,action)=>{
                 userToken:null,
                 isLoggedIn:false
             }
+        
         default:
             if (fetchedUserToken){
                 return {

@@ -9,7 +9,7 @@ function Home() {
     const userLoggedIn=useSelector(state=>state.auth.isLoggedIn);
     console.log("[Home.js] -> userLoggedIn",userLoggedIn);
     const dispatch= useDispatch();
-    const currentUser= localStorage.getItem('user');
+    const currentUser= localStorage.getItem('user').split(".")[0];
     
       useEffect(()=>{
         fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`

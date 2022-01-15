@@ -1,10 +1,10 @@
 import React from 'react';
-import AuthFrom from '../components/Auth/AuthFrom';
+import AuthForm from '../components/Auth/AuthForm';
 // import Auth from '../components/Auth/AuthFrom';
 
 function AuthPage(props) {
     return (
-        <AuthFrom show={props.show}/>
+        <AuthForm show={props.show}/>
     )
 }
 

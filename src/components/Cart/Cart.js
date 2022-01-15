@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
 import Modal from '../UI/Modal/Modal';
-import {initiateCart} from '../../store/actions/cartAction'
+import {initiateCart,fetchCart} from '../../store/actions/cartAction'
 import CheckOut from './CheckOut';
 import Spinner from '../UI/Spinner/Spinner';
 import classes from './Cart.module.css';
@@ -20,14 +20,7 @@ function Cart() {
     const currentUser= localStorage.getItem('user');
     
       useEffect(()=>{
-        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`
-          ).then(response=>response.json()).then(resData=>{
-            console.log("initiateCart -> CartAction.js",resData);
-            console.log("[CartAction.js -> currentUser]",currentUser);
-              dispatch(initiateCart(resData));
-          }).catch(error=>{
-            console.log(error.message);
-          });
+        dispatch(fetchCart());
       },[])
     
     useEffect(()=>{
@@ -88,13 +81,13 @@ function Cart() {
 
         {!cartProductItems.length && <h2>Start adding into to Cart</h2>}
         {cartProductItems}
-        {cartProductItems.length!==0 && <CartSection openCheckOut={openCheckOutHandler}/>}
+        {cartProductItems.length!==0 && <CartSection openCheckOut={openCheckOutHandler} />}
     </div>
     
     return (
         <div className={classes.Cart}>
-        {checkOurModal && <CheckOut closeModal={closeCheckOutModalHandler} products={products}>
-        </CheckOut>}
+        {checkOurModal && <CheckOut closeModal={closeCheckOutModalHandler} products={products} cartLen={cartProductItems.length}/>
+        }
             {CartPageContent}
             
         </div>

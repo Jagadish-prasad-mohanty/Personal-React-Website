@@ -5,10 +5,12 @@ import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 import { useNavigate } from 'react-router-dom';
+import OrderAddress from '../Cart/OrderAddress';
 // import { useHistory } from 'react-router';
 function Profile(props) {
     const navigate=useNavigate();
-    const email=localStorage.getItem('user');
+    let email=localStorage.getItem('user');
+    email=email.split(".")[0];
 
     const userToken=useSelector(state=>state.auth.userToken);
      const [isLoading,setIsLoading] =useState(false);
@@ -56,7 +58,7 @@ function Profile(props) {
     return (
         <div className={classes.Profile}>
         <p>Welcome <span >{email}</span></p>
-        <Card>
+        <Card className={classes.PassResetForm}>
 
             
             <h3 style={{'marginBottom':'1rem'}}>Want to change Password!!</h3>
@@ -67,6 +69,7 @@ function Profile(props) {
             <Button btnName="Submit" onclick={changePassHandler}/>
         </Card>
 
+        <OrderAddress/>
        </div>
     )
 }

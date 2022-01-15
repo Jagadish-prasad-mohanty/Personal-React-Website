@@ -1,8 +1,9 @@
-import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART } from '../actions/cartAction';
+import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART,CHANGE_ADDRESS } from '../actions/cartAction';
 let initialCartState={
     cart:[],
     totalCount:0,
     totalAmount:0,
+    userAddress:null
 }
 // fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json").then((response)=>response.json()).then((data)=>{
 //         const fetchedProducts=[];
@@ -67,9 +68,11 @@ const cartReducer= (state=initialCartState,action) =>{
                 //     totalCount:newCount,
                 //     totalAmount:newTotal
                 // }
+                console.log("[cartReducer->state]",state);
                 updatedTotalCart['cart']=updatedCart;
                 updatedTotalCart[ 'totalCount']=newCount;
                 updatedTotalCart['totalAmount']=newTotal;
+                updatedTotalCart['userAddress']=state.userAddress;
                 fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
                     method:'PUT',
                     body:JSON.stringify(updatedTotalCart),
@@ -142,6 +145,7 @@ const cartReducer= (state=initialCartState,action) =>{
             updatedTotalCart['cart']=updatedCart;
             updatedTotalCart[ 'totalCount']=newCount;
             updatedTotalCart['totalAmount']=newTotal;
+            updatedTotalCart['userAddress']=state.userAddress;
             fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
                     method:'PUT',
                     body:JSON.stringify(updatedTotalCart),
@@ -210,6 +214,7 @@ const cartReducer= (state=initialCartState,action) =>{
             updatedTotalCart['cart']=updatedCart;
             updatedTotalCart[ 'totalCount']=newCount;
             updatedTotalCart['totalAmount']=newTotal;
+            updatedTotalCart['userAddress']=state.userAddress;
             fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
                     method:'PUT',
                     body:JSON.stringify(updatedTotalCart),
@@ -225,6 +230,13 @@ const cartReducer= (state=initialCartState,action) =>{
                 ...state,
                 ...updatedTotalCart
             }
+        case CHANGE_ADDRESS:
+            return {
+                ...state,
+                userAddress:action.userAddress
+            }
+
+        
         default:
             return state
     }
