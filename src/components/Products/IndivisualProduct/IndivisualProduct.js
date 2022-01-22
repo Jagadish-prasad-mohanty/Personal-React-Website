@@ -23,7 +23,7 @@ function IndivisualProduct(props) {
         dispatch(incrFevorite({id:props.id,price:props.price,currentUser:currentUser}))
     }
     const showProductDetails=()=>{
-        navigate('/product-details',{replace:false})
+        navigate(`${props.name}`,{replace:false})
     }
     const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (
@@ -41,7 +41,7 @@ function IndivisualProduct(props) {
                 </div>
                 {!props.forCart && <div className={classes.ProductButtons}>
                 
-                 <Button btnName={inCart?"Item in Cart":"Add to Cart"} onclick={productAddToCartHandler}/>
+                 <Button btnName={inCart?"Item in Cart":"Add to Cart"} disabled={inCart} onclick={productAddToCartHandler}/>
                  <Button btnName="Details" onclick={showProductDetails}/>
                 
                 
@@ -49,7 +49,7 @@ function IndivisualProduct(props) {
                 {props.forCart && <p className={classes.Count}><i class="fas fa-times"></i> {props.count}</p>}
                 {props.forCart && <div className={classes.IncrDecrBtn}>
 
-               <Button btnName="+" onclick={productIncrOfCartHandler}/>
+                <Button btnName="+" onclick={productIncrOfCartHandler}/>
                  <Button btnName="-" onclick={productRemoveFromCartHandler}/>
                 </div>}
 

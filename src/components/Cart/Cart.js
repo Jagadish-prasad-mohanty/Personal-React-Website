@@ -7,6 +7,7 @@ import CheckOut from './CheckOut';
 import Spinner from '../UI/Spinner/Spinner';
 import classes from './Cart.module.css';
 import CartSection from './CartSection';
+import { fetchProducts } from '../../store/actions/productAction';
 function Cart() {
     //* use redux state(part of state mkeans cart) *
     const cartProducts=useSelector(state=>state.cart.cart);
@@ -14,46 +15,17 @@ function Cart() {
     //use State for check out modal
     const [checkOurModal,setCheckOutModal]=useState(false);
     //**Fetch data from api (product data) */
-    const [products,setProducts]=useState([]);
-    const [isLoading,setIsLoading]=useState(false);
+    
     const dispatch= useDispatch();
     const currentUser= localStorage.getItem('user');
+    const products=useSelector(state=>state.products.products);
+    const isLoading=useSelector(state=>state.products.isLoading);
     
-      useEffect(()=>{
-        dispatch(fetchCart());
-      },[])
-    
-    useEffect(()=>{
-        const fetchMeals= async ()=>{
-            const response=await fetch("https://reactpersonalproject-default-rtdb.firebaseio.com/Products.json");
-            if (!response.ok){
-                throw new Error("Something went wrong!!");
-            }
-            const data=await response.json();
-            setIsLoading(false);
-            return data;
-        }
-        setIsLoading(true)
-        fetchMeals().then(data=>{
-            
-            console.log("[Cart.js -> fetch product data]",data);
-            
-            const productItems=[];
-            for (let key in data){
-                const productItem={
-                    id:data[key].id,
-                    hotelName:data[key].hotelName,
-                    price:data[key].price,
-                    image:data[key].image,
-                    name:data[key].name
-                }
-                productItems.push(productItem);
-            }
-            console.log("[cart.js ->productItems]",productItems);
-            setProducts(productItems);
-        })
+      
+    useEffect(() => {
+        
+        dispatch(fetchProducts())
     }, [])
-
     
 
     const openCheckOutHandler= () =>{

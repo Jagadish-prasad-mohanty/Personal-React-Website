@@ -32,8 +32,7 @@ function App() {
   const closeModal= () =>{
     setModalActive(false)
   }
-  
-
+   
   return (
   <>
     <Layout className={classes.App} show={showModal}>
@@ -45,7 +44,7 @@ function App() {
         {state.isLoggedIn && <Route path="/cart" element={<CartPage/>}/>}
         <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
         {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
-        {state.isLoggedIn && <Route path="/product-details" element={<ProductDetails/>}/>}
+        {state.isLoggedIn && <Route path="/products/:id" element={<ProductDetails/>}/>}
         <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       

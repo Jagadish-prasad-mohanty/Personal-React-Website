@@ -27,12 +27,17 @@ function CheckOut(props) {
     
 
     const fillOrderAddressHandler=()=>{
+        if (orderAddress)
+            console.log("hi there")
         setOrderAddress(true);
     }
 
     return (
         <Modal closeModal={props.closeModal}>
+        <div className={classes.checkOutItems}>
+
             {checkoutData}
+        </div>
             {orderAddress && <OrderAddress />}
             <Button btnName="Place Order" onclick={fillOrderAddressHandler}/>
             

@@ -1,3 +1,8 @@
+.Load{
+  height:'80vh';
+  display:'grid';
+  place-items:'center';
+}
 .Loader {
     color: #96350e;
     font-size: 20px;

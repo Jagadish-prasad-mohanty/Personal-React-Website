@@ -1,3 +1,7 @@
+.checkOutItems{
+    height: 6rem;
+    overflow: auto;
+}
 .checkOutItem{
     display: flex;
     justify-content: space-around;

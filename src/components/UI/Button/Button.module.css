@@ -15,3 +15,8 @@
     background-color: var(--brown);
     color: white;
 }
+
+.Button:disabled{
+    background-color: gray;
+    color: rgb(233, 232, 232);
+}

@@ -85,11 +85,6 @@ const cartReducer= (state=initialCartState,action) =>{
 
                 });
             }
-
-            else{
-                alert("Product is already in the Cart")
-                return state
-            }
             
            
             return {

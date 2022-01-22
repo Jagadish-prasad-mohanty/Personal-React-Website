@@ -1,22 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from '../../UI/Card/Card';
 import NaanImage from '../../../assets/image/naan.jpg';
 import classes from './ProductDetails.module.css';
 import Button from '../../UI/Button/Button';
+import { useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../../../store/actions/productAction';
+import Spinner from '../../UI/Spinner/Spinner';
 
 function ProductDetails(props) {
+    const { id }=useParams();
+    let productDetails={};
+    const products=useSelector(state=>state.products.products);
+    const isLoading=useSelector(state=>state.products.isLoading);
+    const cart=useSelector(state=>state.cart.cart);
+    
+    productDetails={...products.filter(product=>product.name===id)[0]};
+    let disabled=false;
+    cart.forEach(item=>{
+        if (item.id === productDetails.id){
+            disabled=true
+        }
+    })
+    console.log("ProductDetails -> products",products);
+    console.log("ProductDetails -> productDetails",productDetails);
+    if (isLoading)
+        return <Spinner />
     return (
-        <div>
+        <div className={classes.productDetails}>
             <div className={classes.productImage}>
                 <img src={NaanImage}/>
             </div>
-            <Card className={classes.productDetails}>
-                <h2>Butter Naan</h2>
-                <p>Butter naan is soft and extremely yummy, it is often served at buffets in festivals or special occasions. Naan, topped with melted butter is a delicious Indian bread. The best part is that we can easily make it at home. </p>
-            </Card>
-            <div className={classes.productControls}>
-                <Button btnName="Add to Cart"/>
+            <div className={classes.productContent}>
+                <h2>{productDetails.name}</h2>
+                <p>{productDetails.description} </p>
+                <div className={classes.productInfo}>
+                    <h5>{productDetails.hotelName}</h5>
+                    <p><i>{productDetails.price}-/</i> </p>
+                </div>
+                <div className={classes.productControls}>
+                    <Button disabled={disabled} btnName="Add to Cart"/>
+                </div>
             </div>
+            
         </div>
     )
 }
