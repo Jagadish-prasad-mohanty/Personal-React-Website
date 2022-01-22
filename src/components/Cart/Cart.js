@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
 import Modal from '../UI/Modal/Modal';
 import {initiateCart,fetchCart} from '../../store/actions/cartAction'
-import CheckOut from './CheckOut';
+import CheckOut from './AddressConfirm';
 import Spinner from '../UI/Spinner/Spinner';
 import classes from './Cart.module.css';
 import CartSection from './CartSection';
 import { fetchProducts } from '../../store/actions/productAction';
+import AddressConfirm from './AddressConfirm';
 function Cart() {
     //* use redux state(part of state mkeans cart) *
     const cartProducts=useSelector(state=>state.cart.cart);
@@ -58,7 +59,7 @@ function Cart() {
     
     return (
         <div className={classes.Cart}>
-        {checkOurModal && <CheckOut closeModal={closeCheckOutModalHandler} products={products} cartLen={cartProductItems.length}/>
+        {checkOurModal && <AddressConfirm closeModal={closeCheckOutModalHandler}  cartLen={cartProductItems.length}/>
         }
             {CartPageContent}
             

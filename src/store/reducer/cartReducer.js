@@ -51,7 +51,7 @@ const cartReducer= (state=initialCartState,action) =>{
                 totalAmount:totalAmount
             }
         case ADD_TO_CART:
-            currentUser=action.productData.currentUser
+            currentUser=localStorage.getItem('user').split(".")[0];
             updatedCart=[...state.cart];
             index=updatedCart.findIndex(item=>item.id===action.productData.id);
             if (index===-1){

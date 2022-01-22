@@ -8,7 +8,6 @@ import { initiateCart } from '../../store/actions/cartAction';
 function Home() {
     const userLoggedIn=useSelector(state=>state.auth.isLoggedIn);
     console.log("[Home.js] -> userLoggedIn",userLoggedIn);
-   
     
      
     return (

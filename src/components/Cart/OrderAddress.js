@@ -49,7 +49,7 @@ function OrderAddress(props) {
     },[userAddress])
     const saveAddressDataHandler = ()=>{
         
-        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}/address.json`,{
+        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}/userAddress.json`,{
                     method:'PUT',
                     body:JSON.stringify({
                             name,email,phone,pin,address

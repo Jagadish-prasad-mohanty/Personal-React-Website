@@ -12,11 +12,13 @@
 
 }
 .Button:hover{
+    cursor: pointer;
     background-color: var(--brown);
     color: white;
 }
 
 .Button:disabled{
+    cursor: not-allowed;
     background-color: gray;
     color: rgb(233, 232, 232);
 }

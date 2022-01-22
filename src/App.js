@@ -14,6 +14,7 @@ import Profile from './components/Profile/Profile'
 import {useDispatch, useSelector } from 'react-redux';
 import ProductDetails from './components/Products/ProductDetails/ProductDetails';
 import { initiateCart } from './store/actions/cartAction';
+import CheckOutPage from './pages/CheckOutPage';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -45,6 +46,7 @@ function App() {
         <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
         {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
         {state.isLoggedIn && <Route path="/products/:id" element={<ProductDetails/>}/>}
+        {state.isLoggedIn && <Route path="/check-out" element={<CheckOutPage/>}/>}
         <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       

@@ -13,13 +13,16 @@ function IndivisualProduct(props) {
     const navigate=useNavigate();
     const cart=useSelector(state=>state.cart.cart)
     const dispatch=useDispatch();
-    const productAddToCartHandler= () =>{
-        dispatch(addFevorite({id:props.id,price:props.price,currentUser:currentUser}))
+    const productAddToCartHandler= (e) =>{
+        e.stopPropagation();
+        dispatch(addFevorite({id:props.id,price:props.price}))
     }
-    const productRemoveFromCartHandler= () =>{
+    const productRemoveFromCartHandler= (e) =>{
+        e.stopPropagation();
         dispatch(removeFevorite({id:props.id,currentUser:currentUser}))
     }
-    const productIncrOfCartHandler= ()=>{
+    const productIncrOfCartHandler= (e)=>{
+        e.stopPropagation();
         dispatch(incrFevorite({id:props.id,price:props.price,currentUser:currentUser}))
     }
     const showProductDetails=()=>{
@@ -27,7 +30,7 @@ function IndivisualProduct(props) {
     }
     const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (
-        <Card className={classes.Product}>
+        <Card className={classes.Product} onClick={showProductDetails}>
             <div className={classes.ProductImg}>
                 <img src={props.imgLink}/>
             </div>
