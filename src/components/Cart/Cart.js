@@ -9,6 +9,8 @@ import classes from './Cart.module.css';
 import CartSection from './CartSection';
 import { fetchProducts } from '../../store/actions/productAction';
 import AddressConfirm from './AddressConfirm';
+import Button from '../UI/Button/Button';
+
 function Cart() {
     //* use redux state(part of state mkeans cart) *
     const cartProducts=useSelector(state=>state.cart.cart);
@@ -49,6 +51,7 @@ function Cart() {
             return <IndivisualProduct key={prod.id} id={prod.id} name={prod.name} price={prod.price} imgLink={prod.image} hotelName={prod.hotelName} forCart={true} count={item.count}/>}
         }
     );
+      
     
     const CartPageContent=isLoading?<Spinner/>:<div>
 
@@ -62,6 +65,7 @@ function Cart() {
         {checkOurModal && <AddressConfirm closeModal={closeCheckOutModalHandler}  cartLen={cartProductItems.length}/>
         }
             {CartPageContent}
+            
             
         </div>
     )

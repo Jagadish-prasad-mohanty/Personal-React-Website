@@ -15,6 +15,8 @@ import {useDispatch, useSelector } from 'react-redux';
 import ProductDetails from './components/Products/ProductDetails/ProductDetails';
 import { initiateCart } from './store/actions/cartAction';
 import CheckOutPage from './pages/CheckOutPage';
+import Resturants from './components/Resturants/Resturants';
+import { Redirect } from 'react-router';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -44,9 +46,13 @@ function App() {
         {!state.isLoggedIn && <Route path="/auth" element={<AuthPage show={showModal}/>}/>}
         {state.isLoggedIn && <Route path="/cart" element={<CartPage/>}/>}
         <Route path="/profile" element={state.isLoggedIn?<Profile show={showModal}/>:<Navigate to="/auth"/>}/>
-        {state.isLoggedIn && <Route path="/products" element={<ProductPage/>}/>}
-        {state.isLoggedIn && <Route path="/products/:id" element={<ProductDetails/>}/>}
+        {state.isLoggedIn && <Route path="/products" element={<Navigate to="/products/sort=asc"/>}/>
+          
+        }
+        {state.isLoggedIn && <Route path="/products/:queryParams" element={<ProductPage/>}/>}
+        {state.isLoggedIn && <Route path="/product-details/:id" element={<ProductDetails/>}/>}
         {state.isLoggedIn && <Route path="/check-out" element={<CheckOutPage/>}/>}
+        {state.isLoggedIn && <Route path="/resturants/:id" element={<Resturants/>}/>}
         <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       

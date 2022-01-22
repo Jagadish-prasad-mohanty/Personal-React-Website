@@ -6,6 +6,7 @@ import Button from '../../UI/Button/Button';
 import { addFevorite, incrFevorite, removeFevorite } from '../../../store/actions/cartAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 function IndivisualProduct(props) {
     const currentUser=localStorage.getItem('user').split(".")[0];
@@ -26,7 +27,11 @@ function IndivisualProduct(props) {
         dispatch(incrFevorite({id:props.id,price:props.price,currentUser:currentUser}))
     }
     const showProductDetails=()=>{
-        navigate(`${props.name}`,{replace:false})
+        navigate(`/product-details/${props.name}`,{replace:false})
+    }
+    const openResturantProducts=(e)=>{
+        e.stopPropagation();
+        navigate(`/resturants/${props.hotelName}`);
     }
     const inCart= cart.findIndex(item=>item.id===props.id)!==-1?true:false
     return (
@@ -38,7 +43,9 @@ function IndivisualProduct(props) {
                 <div className={classes.ProductDetail}>
                     <h3>{props.name}</h3>
                     <div className={classes.ProductSummary}>
-                        <p style={{color:'blue'}}>{props.hotelName}</p>
+                        
+                            <p style={{color:'blue',cursor:'pointer'}} onClick={openResturantProducts}>{props.hotelName}</p>
+                        
                         <p><i>{props.price} Rupee /-</i> </p>
                     </div>
                 </div>

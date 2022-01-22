@@ -26,7 +26,7 @@ export const fetchProducts= () =>{
                         image:data[key].image,
                         hotelName:data[key].hotelName,
                         isFev:data[key].isFev,
-                        description:data[key].description,
+                        description:data[key].description
                     })
                 }
                 console.log("productAction -> fetchedProduct",fetchedProducts);
