@@ -13,6 +13,7 @@ import { addFevorite } from "../../../store/actions/cartAction";
 function ProductDetails(props) {
   const { id } = useParams();
   let productDetails = {};
+  const navigate=useNavigate();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
   const isLoading = useSelector((state) => state.products.isLoading);
@@ -32,6 +33,10 @@ function ProductDetails(props) {
       addFevorite({ id: productDetails.id, price: productDetails.price })
     );
   };
+  const openResturantProducts=(e)=>{
+    e.preventDefault();
+    navigate(`/resturants/${productDetails.hotelName}`);
+}
   if (isLoading) return <Spinner />;
   return (
     <div className={classes.productDetails}>
@@ -42,7 +47,7 @@ function ProductDetails(props) {
         <h2>{productDetails.name}</h2>
         <p>{productDetails.description} </p>
         <div className={classes.productInfo}>
-          <h5>{productDetails.hotelName}</h5>
+          <h5 onClick={openResturantProducts}>{productDetails.hotelName}</h5>
           <p>
             <i>{productDetails.price}-/</i>{" "}
           </p>

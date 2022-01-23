@@ -57,7 +57,9 @@ function Cart() {
 
         {!cartProductItems.length && <h2>Start adding into to Cart</h2>}
         {cartProductItems}
-        {cartProductItems.length!==0 && <CartSection openCheckOut={openCheckOutHandler} />}
+        {cartProductItems.length!==0 && <div className={classes.CartSection}>
+            <CartSection openCheckOut={openCheckOutHandler} />
+        </div>}
     </div>
     
     return (

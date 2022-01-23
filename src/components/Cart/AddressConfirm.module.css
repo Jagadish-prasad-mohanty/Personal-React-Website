@@ -1,6 +1,9 @@
 .checkOutItems{
     height: 6rem;
+    width:25rem;
     overflow: auto;
+    text-align: left;
+    
 }
 .checkOutItem{
     display: flex;

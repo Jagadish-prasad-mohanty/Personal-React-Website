@@ -36,6 +36,7 @@
 }
 .productInfo > h5{
     color:blue;
+    cursor: pointer;
 
 }
 .productControls{

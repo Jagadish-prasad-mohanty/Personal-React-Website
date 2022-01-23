@@ -9,7 +9,7 @@
     height: 60vh;
     z-index: 0;
 }
-.Home img{
+.HomeImage > img{
 
     width: 110%;
     height: 100%;

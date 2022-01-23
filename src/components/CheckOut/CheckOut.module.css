@@ -1,0 +1,21 @@
+.CheckOutDiv{
+    margin-bottom: 8rem;
+}
+.CheckOutBtn{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 1rem 3rem ;
+    background-color: lightgrey;
+    margin:1rem auto;
+    gap: 30%;
+    height: 4rem;
+    text-align: left;
+    
+  }
+
+  .CheckOutBtn > .button{  
+      width:20rem;      
+      text-align:center;
+  }

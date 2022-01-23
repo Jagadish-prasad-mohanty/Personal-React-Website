@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import classes from './CartSection.module.css';
 import Button from '../UI/Button/Button';
+import { useNavigate } from 'react-router';
 
 function CartSection(props) {
     
@@ -9,9 +10,12 @@ function CartSection(props) {
     const gstPerc =10;
     const gst=cartAmount*0.1;
     const totalAmount=cartAmount+gst;
+    const navigate=useNavigate();
     const openCheckOutModalHandler= ()=>{
         props.openCheckOut();
     }
+    
+
     return (
         <div className={classes.cartSection}>
                 <div className={classes.PriceSection}>
@@ -29,7 +33,7 @@ function CartSection(props) {
                 </div>
                 </div>
                 <div className={classes.cartBtn}>
-                    <Button btnName="Add More"/>
+                    <Button btnName="Add More" onclick={()=>{navigate('/products')}}/>
                     <Button btnName="Check Out" onclick={openCheckOutModalHandler}/>
                 </div>
             </div>

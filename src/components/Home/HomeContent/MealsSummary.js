@@ -1,4 +1,4 @@
-import Card from '../UI/Card/Card';
+import Card from '../../UI/Card/Card';
 import classes from './MealsSummary.module.css';
 import React from 'react';
 const MealsSummary = () => {

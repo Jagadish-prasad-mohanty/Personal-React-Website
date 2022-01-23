@@ -2,4 +2,9 @@
     width: 100%;
     position: relative;
 }
-
+.CartSection{
+    width:100%;
+    display: flex;
+    justify-content: right;
+  padding-right :4.5rem;
+}

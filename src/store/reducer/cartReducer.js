@@ -1,4 +1,4 @@
-import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART,CHANGE_ADDRESS } from '../actions/cartAction';
+import { ADD_TO_CART,INCR_THE_CART,REMOVE_FROM_CART,INITIATE_CART,CHANGE_ADDRESS,RESET_CART } from '../actions/cartAction';
 let initialCartState={
     cart:[],
     totalCount:0,
@@ -49,6 +49,29 @@ const cartReducer= (state=initialCartState,action) =>{
                 cart:action.initialCart.cart,
                 totalCount:action.initialCart.totalCount,
                 totalAmount:totalAmount
+            }
+        case RESET_CART:
+            currentUser=localStorage.getItem('user').split(".")[0];
+            updatedTotalCart['cart']=[];
+                updatedTotalCart[ 'totalCount']=0;
+                updatedTotalCart['totalAmount']=0;
+                updatedTotalCart['userAddress']=state.userAddress;
+                fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}.json`,{
+                    method:'PUT',
+                    body:JSON.stringify(updatedTotalCart),
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                }).then(response=>response.json()).then(resData=>{
+                    console.log("[Send Cart Response Data]",resData);
+                }).catch(error=>{
+
+                });
+            return{
+                ...state,
+                cart:[],
+                totalCount:0,
+                totalAmount:0
             }
         case ADD_TO_CART:
             currentUser=localStorage.getItem('user').split(".")[0];

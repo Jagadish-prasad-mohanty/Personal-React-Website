@@ -4,7 +4,8 @@ import { fetchCart } from '../../store/actions/cartAction';
 import { fetchProducts } from '../../store/actions/productAction';
 import classes from './Layout.module.css';
 import Button from '../UI/Button/Button';
-import Navigation from './Navigation'
+import Navigation from './Navigation';
+import Footer from './Footer';
 function Layout(props) {
     const dispatch=useDispatch();
     const currentUser=localStorage.getItem('user');
@@ -26,6 +27,7 @@ function Layout(props) {
             btnName={<i class="fas fa-arrow-up"></i>}
           />
             </main>
+            <Footer/>
         </div>
     )
 }
