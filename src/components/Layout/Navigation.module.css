@@ -15,6 +15,9 @@
 .navigation h3{
     text-shadow: 3px 4px 2px rgba(0,0,0,0.25), -3px -4px 2px rgba(0,0,0,0.25);
 }
+.hb_mobile{
+    display:none;
+}
 .nav{
     /* margin-right: 5rem; */
     /* padding: 5px; */
@@ -58,7 +61,7 @@ button{
 }
 .AuthButton{
     border-radius: 1rem;
-    padding: 0.4rem 0.5rem;
+    padding: 0.3rem 0.5rem;
     transition: all 0.2s ease-out;
     color: #2c0d00;
     background-color: white;
@@ -70,4 +73,63 @@ button{
     background-color: #2c0d00;
     color: white;
     border: 1px solid white;
+}
+
+.nav_mobile{
+    display:none;
+}
+
+@media (max-width:567px){
+    .hb_mobile{
+        display: block;
+    }
+    .nav{
+        display: none;
+    }
+   .menu_mobile{
+        background-color: rgba(19, 18, 18, 0.95);
+        display: flex;
+        align-items: center;
+        justify-content: top;
+        flex-flow: column;
+        gap: 1rem;
+        width: 80%;
+        height:100vh;
+        z-index: 10;
+        padding: 0.5rem;
+        position: fixed;
+        top:3.5rem;
+        transform: translateX(-100%);
+        transition: all 0.3s ease;
+   }
+    .menu_mobile_show{
+        transform: translateX(0);
+    }
+    .menu_mobile > li{
+        width:100%;
+        background-color: rgb(5, 66, 66);
+        border-radius: 0.3rem;
+        padding:1rem;
+        color:white;
+        text-align: left;
+    }
+    .cartButton_mobile{
+        display: flex;
+        gap:0.5rem;
+        align-items:center;
+    }
+    .cartButton_mobile p{
+        background-color: rgba(9, 136, 136, 0.808);
+        padding:  0.2rem 0.4em;
+        border-radius:0.4rem;
+    }
+    .menu_backdrop{
+        background-color:rgba(0,0,0,0.40);
+        position: fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100vh;
+        z-index:5;
+    }
 }

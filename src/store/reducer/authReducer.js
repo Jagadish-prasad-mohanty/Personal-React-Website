@@ -13,14 +13,6 @@ const initialAuthState={
 }
 
 
-
-const remainingTimeCalc= (expTime) =>{
-    const currTime=new Date().getTime();
-    console.log("[authReducer]",expTime,currTime);
-    return expTime-currTime;
-    
-}
-
 const authReducer= (state=initialAuthState,action)=>{
 //     const userLoggedIn=!!state.token;
     const fetchedUserToken=localStorage.getItem('token');
@@ -40,14 +32,7 @@ const authReducer= (state=initialAuthState,action)=>{
             const newUser=action.userData.userEmail;
             localStorage.setItem('token',newToken);
             localStorage.setItem('user',newUser);
-            const timeOut=remainingTimeCalc(action.userData.expTime);
-            console.log("[authReducer]",timeOut);
-            localStorage.setItem('timeout',timeOut);
-            // setTimeout(() => {
-            //     localStorage.removeItem('token');
-            //     localStorage.removeItem('user');
-                
-            // }, timeOut);
+            
             return {
                 ...state,
                 userEmail:newUser,

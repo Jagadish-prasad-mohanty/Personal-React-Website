@@ -7,6 +7,7 @@ function HomeContent() {
     const goToPallet= (palletName)=>{
         navigate(`pallet/${palletName}`);
     }
+
   return <div className={classes.HomeContent}>
         <div className={classes.Service} onClick={()=>goToPallet('Chinese')}>
                 <div className={classes.ServiceImage}>

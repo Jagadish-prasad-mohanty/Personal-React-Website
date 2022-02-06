@@ -3,3 +3,8 @@
     bottom: 3rem;
     right: 1.5rem;
 }
+
+.LayoutMain{
+    margin-top: 3.5rem;
+    min-height: 49vh;
+}

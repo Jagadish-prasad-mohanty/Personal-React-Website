@@ -2,9 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../UI/Modal/Modal';
 import classes from './OrderPreview.module.css';
+import Button from '../UI/Button/Button';
 import { resetCart } from '../../store/actions/cartAction';
+import { useNavigate } from 'react-router-dom';
 const OrderPreview =(props)=>{
     const dispatch=useDispatch();
+    const navigate=useNavigate();
     const items=useSelector(state=>state.cart.cart);
     const products=useSelector(state=>state.products.products);
     const totalAmount=useSelector(state=>state.cart.totalAmount);
@@ -24,7 +27,7 @@ const OrderPreview =(props)=>{
     const modalOnClick= ()=>{
         dispatch(resetCart());
         props.closeModal();
-        
+        navigate('/');
     }
     return <Modal closeModal={modalOnClick} >
         <h2>Thank You For Your Intrest!!</h2>
@@ -40,10 +43,10 @@ const OrderPreview =(props)=>{
                 <span>{totalAmount}</span> 
             </div>}
 
-        <h3>You order would be there in <span style={{color:'red'}}>15 min</span></h3>
+        <h3>You order will be there in <span style={{color:'red'}}>15 min</span></h3>
         <div className={classes.actions}>
-        <button className={classes.button} onClick={modalOnClick}>Close</button>
-</div>
+        <Button className={classes.button} btnName="Close" onclick={modalOnClick}></Button>
+    </div>
     </Modal>
 }
 

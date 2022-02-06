@@ -74,19 +74,10 @@ function AuthForm(props) {
             props.show("Success!!",'complete');
             if (isSignIn){
               const newTime=new Date().getTime();
-              // setTimeout(() => {
-              //   dispatch(logoutHandler())
-              // }, 5000);
-              
-              // console.log('[AuthForm.js]',newTime+10000000);
-              dispatch(loginHandler({userToken:data.idToken,userEmail:data.email,expTime:newTime+100000000}));
+              // const expTime
+              dispatch(loginHandler({userToken:data.idToken,userEmail:data.email,expTime:newTime+5000}));
       
-              navigate('/products')
-              setTimeout(() => {
-                dispatch(logoutHandler());
-              }, localStorage.getItem('timeout'));
-
-              
+              navigate('/products');
             }
             
             
