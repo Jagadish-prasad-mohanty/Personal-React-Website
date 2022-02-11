@@ -8,3 +8,10 @@
     justify-content: right;
   padding-right :4.5rem;
 }
+@media(max-width:576px) {
+  .Products{
+      display: flex;
+      flex-wrap: wrap;
+  }
+  
+}

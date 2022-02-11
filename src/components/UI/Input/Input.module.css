@@ -7,7 +7,7 @@
 }
 .Input label{
     width: 30%;
-    text-align: right;
+    text-align: left;
     cursor: pointer;
 }
 .Input input{

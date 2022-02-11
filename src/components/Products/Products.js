@@ -58,7 +58,10 @@ function Products() {
         />
       </div>
       {isLoading && <Spinner />}
+      <div className={classes.Products}>
+
       {!isLoading && productItems}
+      </div>
     
     </div>
   );

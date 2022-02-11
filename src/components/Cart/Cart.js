@@ -56,7 +56,10 @@ function Cart() {
     const CartPageContent=isLoading?<Spinner/>:<div>
 
         {!cartProductItems.length && <h2>Start adding into to Cart</h2>}
+        <div className={classes.Products}>
+
         {cartProductItems}
+        </div>
         {cartProductItems.length!==0 && <div className={classes.CartSection}>
             <CartSection openCheckOut={openCheckOutHandler} />
         </div>}

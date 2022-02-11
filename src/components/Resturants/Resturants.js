@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router';
 import IndivisualProduct from '../Products/IndivisualProduct/IndivisualProduct';
+import classes from './Resturants.module.css';
 
 function Resturants() {
     const products=useSelector(state=>state.products.products);
@@ -12,7 +13,7 @@ function Resturants() {
         }
     })
     return (
-        <div>
+        <div className={classes.Products}>
             {resturantProducts}
         </div>
     )

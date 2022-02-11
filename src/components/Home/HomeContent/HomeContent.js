@@ -6,6 +6,7 @@ function HomeContent() {
     const navigate=useNavigate();
     const goToPallet= (palletName)=>{
         navigate(`pallet/${palletName}`);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
   return <div className={classes.HomeContent}>

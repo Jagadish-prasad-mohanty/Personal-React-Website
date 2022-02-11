@@ -57,7 +57,7 @@ function Profile(props) {
     }
     return (
         <div className={classes.Profile}>
-        <p>Welcome <span >{email}</span></p>
+        <p>Welcome <span >{email.split('@')[0]}</span></p>
         <Card className={classes.PassResetForm}>
 
             

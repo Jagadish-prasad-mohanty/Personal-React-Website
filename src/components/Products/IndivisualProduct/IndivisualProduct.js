@@ -46,13 +46,13 @@ function IndivisualProduct(props) {
   const inCart =
     cart.findIndex((item) => item.id === props.id) !== -1 ? true : false;
   return (
-    <Card className={classes.Product} onClick={showProductDetails}>
+    <Card className={classes.Product}>
       <div className={classes.ProductImg}>
         <img src={props.imgLink} />
       </div>
       <div className={classes.ProductDetails}>
         <div className={classes.ProductDetail}>
-          <h3>{props.name}</h3>
+          <h3 className={classes.Product_Head}>{props.name}</h3>
           <div className={classes.ProductSummary}>
             <p
               style={{ color: "blue", cursor: "pointer" }}
@@ -69,11 +69,19 @@ function IndivisualProduct(props) {
         {!props.forCart && (
           <div className={classes.ProductButtons}>
             <Button
+            className={classes.BtnCart_desktop}
               btnName={inCart ? "Item in Cart" : "Add to Cart"}
               disabled={inCart}
               onclick={productAddToCartHandler}
             />
-            <Button btnName="Details" onclick={showProductDetails} />
+            <Button
+            className={classes.BtnCart_mobile}
+              btnName={inCart ? <i class="fa-solid fa-cart-shopping"></i> : <i class="fa-solid fa-cart-plus"></i>}
+              
+              disabled={inCart}
+              onclick={productAddToCartHandler}
+            />
+            {/* <Button btnName="Details" onclick={showProductDetails} /> */}
           </div>
         )}
         {props.forCart && (
