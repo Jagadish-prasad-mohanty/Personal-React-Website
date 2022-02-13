@@ -8,3 +8,10 @@
     margin-top: 3.5rem;
     min-height: 49vh;
 }
+
+@media (max-width:567px) {
+    .LayoutMain{
+        margin-top: 2rem;
+        font-size: 90%;
+    }
+}

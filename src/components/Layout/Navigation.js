@@ -58,13 +58,16 @@ function Navigation(props) {
             <div >
                 <ul className={`${classes.menu_mobile} ${showMenu?classes.menu_mobile_show:''}`}>
                     {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink to="/products">Products</NavLink>
+                            <NavLink to="/products">Platters</NavLink>
                         </li>}
                         {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
                             <NavLink to="/cart"><div className={classes.cartButton_mobile}>
                                 <h3>Cart</h3>
                                 <p>{cartCount}</p>
                             </div></NavLink>
+                        </li>}
+                        {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
+                            <NavLink  to="/my-order">My Orders</NavLink>
                         </li>}
                         {!state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
                             <NavLink className={classes.AuthButton} to="/auth" style={{paddingTop:'0.2rem'}}>Login</NavLink>

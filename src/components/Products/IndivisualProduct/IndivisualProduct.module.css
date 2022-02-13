@@ -124,7 +124,10 @@
     .ProductDetails{
         width: 100%;
         border: none;
-        display: block;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.3rem;
+        flex-flow: column;
         border-radius: 0;
     }
     .ProductSummary{
@@ -142,8 +145,13 @@
     .CartButtons{
         display: flex;
         align-items: center;
-        justify-content: left;
+        justify-content: flex-start;
         gap: 1rem;
+        padding: 0;
+        /* border: 1px solid red; */
+}
+.IncrDecrBtn{
+    margin: 0;
 }
 .count{
     

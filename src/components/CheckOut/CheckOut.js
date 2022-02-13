@@ -22,7 +22,7 @@ function CheckOut() {
       <h1>CheckOut </h1>
       <hr style={{ margin: "1rem auto" }} />
       <h4>
-        Your Total Amount is : -/<span>{totalAmount}</span>
+        Your Total Amount is : -/<span>{totalAmount} (GST included)</span>
       </h4>
       <div className={classes.CheckOutDiv}>
         <div className={classes.CheckOutBtn}>
@@ -82,7 +82,7 @@ function CheckOut() {
           <h2>You can choose COD also</h2>
           <div className={classes.button}>
             <Button
-              btnName="Fake CheckOut"
+              btnName="Place Order"
               onclick={() => {
                 setSuccessCheckOut(true);
                 

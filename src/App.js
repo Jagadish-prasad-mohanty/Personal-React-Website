@@ -17,7 +17,9 @@ import { initiateCart } from './store/actions/cartAction';
 import CheckOutPage from './pages/CheckOutPage';
 import Resturants from './components/Resturants/Resturants';
 import { Redirect } from 'react-router';
-import Pallet from './components/Pallet/Pallet';
+import Pallet from './components/Pallet/Platter';
+import Platter from './components/Pallet/Platter';
+import OrdersPage from './pages/OrdersPage';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -53,8 +55,10 @@ function App() {
         {state.isLoggedIn && <Route path="/products/:queryParams" element={<ProductPage/>}/>}
         {state.isLoggedIn && <Route path="/product-details/:id" element={<ProductDetails/>}/>}
         {state.isLoggedIn && <Route path="/check-out" element={<CheckOutPage/>}/>}
+        {state.isLoggedIn && <Route path="/my-order" element={<OrdersPage/>}/>}
+
         {state.isLoggedIn && <Route path="/resturants/:id" element={<Resturants/>}/>}
-        {state.isLoggedIn && <Route path="/pallet/:id" element={<Pallet/>}/>}
+        {state.isLoggedIn && <Route path="/platter/:id" element={<Platter/>}/>}
         <Route path='*' element={<Navigate to="/"/>}/>
     </Routes>
       

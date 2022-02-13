@@ -62,6 +62,8 @@ function Products() {
 
       {!isLoading && productItems}
       </div>
+      
+    
     
     </div>
   );

@@ -4,7 +4,8 @@ import MealsSummary from "./HomeContent/MealsSummary";
 import classes from "./Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { initiateCart } from "../../store/actions/cartAction";
-import HomeContent from './HomeContent/HomeContent';
+import HomeContent from "./HomeContent/HomeContent";
+import Card from "../UI/Card/Card";
 function Home() {
   const userLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   console.log("[Home.js] -> userLoggedIn", userLoggedIn);
@@ -15,7 +16,8 @@ function Home() {
         <img src={MealHomeImage} />
       </div>
       <MealsSummary />
-<HomeContent/>
+      <HomeContent />
+      
     </div>
   );
 }

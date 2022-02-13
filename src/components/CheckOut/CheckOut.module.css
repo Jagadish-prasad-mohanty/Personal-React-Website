@@ -10,12 +10,24 @@
     background-color: lightgrey;
     margin:1rem auto;
     gap: 30%;
-    height: 4rem;
+    /* height: 4rem; */
     text-align: left;
     
+  }
+  .CheckOutBtn h2{
+      width: 20rem;
   }
 
   .CheckOutBtn > .button{  
       width:20rem;      
       text-align:center;
+  }
+
+  @media (max-width:576px) {
+      .CheckOutBtn{
+          flex-flow: column;
+          text-align: center;
+          gap: 1rem;
+      }
+      
   }

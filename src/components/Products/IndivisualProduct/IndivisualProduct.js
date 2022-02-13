@@ -46,6 +46,14 @@ function IndivisualProduct(props) {
   const inCart =
     cart.findIndex((item) => item.id === props.id) !== -1 ? true : false;
   return (
+    // <div class="product-box">
+    //     <img src="http://nicesnippets.com/demo/pro1.jpeg"/>
+    //     <div class="product-desc">
+    //       <h4>ABBOTT LYON</h4>
+    //       <p>$ 20.00</p>
+    //       <button>ADD TO CART</button>
+    //     </div>
+    //   </div>
     <Card className={classes.Product}>
       <div className={classes.ProductImg}>
         <img src={props.imgLink} />
@@ -53,7 +61,7 @@ function IndivisualProduct(props) {
       <div className={classes.ProductDetails}>
         <div className={classes.ProductDetail}>
           <h3 className={classes.Product_Head}>{props.name}</h3>
-          <div className={classes.ProductSummary}>
+          {!props.forCart&& <div className={classes.ProductSummary}>
             <p
               style={{ color: "blue", cursor: "pointer" }}
               onClick={openResturantProducts}
@@ -64,7 +72,7 @@ function IndivisualProduct(props) {
             <p>
               <i>{props.price} Rupee /-</i>{" "}
             </p>
-          </div>
+          </div>}
         </div>
         {!props.forCart && (
           <div className={classes.ProductButtons}>

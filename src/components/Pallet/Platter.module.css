@@ -1,0 +1,8 @@
+.PlatterItems{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Platter h2{
+    margin-bottom: 0.8rem;
+}

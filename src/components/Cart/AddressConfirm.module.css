@@ -7,9 +7,36 @@
 }
 .checkOutItem{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    /* overflow: auto; */
 }
 
 .checkOutItemTitle{
     width: 15rem;
+}
+
+.checkOutItemCount{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 2rem;
+    text-align: left;
+}
+
+.checkOutItem > p{
+    width: 2.3rem;
+    text-align: left;
+}
+
+@media (max-width:576px) {
+    .checkOutItem h3{
+        font-size: 1rem !important;
+    }
+    .checkOutItem{
+        width: 90%;
+    }
+    .checkOutItemTitle{
+        width: 10rem;
+    }
 }

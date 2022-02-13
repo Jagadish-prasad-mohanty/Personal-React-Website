@@ -20,7 +20,7 @@ function AddressConfirm(props) {
         if (index !==-1){
             return <div className={classes.checkOutItem} key={products[index].id}>
                     <h3 className={classes.checkOutItemTitle}>{products[index].name}</h3>
-                    <p><i class="fas fa-times"></i> {item.count}</p>
+                    <div className={classes.checkOutItemCount}><i class="fas fa-times"></i> <p>{item.count}</p></div>
                     <p>: {products[index].price*item.count}</p>
             </div>
         }
