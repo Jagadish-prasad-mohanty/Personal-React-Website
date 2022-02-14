@@ -5,6 +5,8 @@ import classes from './OrderPreview.module.css';
 import Button from '../UI/Button/Button';
 import { resetCart } from '../../store/actions/cartAction';
 import { useNavigate } from 'react-router-dom';
+import {addOrder} from '../../store/actions/orderAction';
+
 const OrderPreview =(props)=>{
     const dispatch=useDispatch();
     const navigate=useNavigate();
@@ -25,9 +27,10 @@ const OrderPreview =(props)=>{
             </li>
     })
     const modalOnClick= ()=>{
+        dispatch(addOrder(items,totalAmount));
         dispatch(resetCart());
         props.closeModal();
-        navigate('/');
+        navigate('/my-order');
     }
     return <Modal closeModal={modalOnClick} >
         <h2>Thank You For Your Intrest!!</h2>

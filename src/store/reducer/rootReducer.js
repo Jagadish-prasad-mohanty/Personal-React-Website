@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { combineReducers, createStore,applyMiddleware,compose } from 'redux';
 import authReducer from './authReducer';
 import cartReducer from './cartReducer';
+import orderReducer from './orderReducer';
 import productReducer from './productReducer';
 import thunk from "redux-thunk";
 
@@ -10,7 +11,8 @@ const rtReducer=combineReducers(
     {
         auth:authReducer,
         cart:cartReducer,
-        products:productReducer
+        products:productReducer,
+        orders:orderReducer
     }
 )
 

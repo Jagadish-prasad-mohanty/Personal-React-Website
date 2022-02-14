@@ -1,36 +1,27 @@
 import React from "react";
 import classes from "./MyOrders.module.css";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import Button from "../UI/Button/Button";
 function MyOrders() {
-  const items = useSelector((state) => state.cart.cart);
-  const products = useSelector((state) => state.products.products);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
-  const order = items.map((item) => {
-    const index = products.findIndex((itm) => itm.id === item.id);
-    const name = products[index].name;
+    const navigate=useNavigate();
+  const orders=useSelector(state=>state.orders.orders);
+  const orderLength=useSelector(state=>state.orders.orderLength);
+  console.log("orderLength : ",orderLength);
+  const order = orders.map((items,index) => {
     return (
-      <li key={item.id} className={classes["cart-item"]}>
+      <li key={Math.random()} className={classes["cart-item"]}>
         <div className={classes["item-summery"]}>
-          <h2>{name}</h2>
-          <div className={classes["item-data"]}>
-            <span className={classes.price}>{`${"\u20A8"} ${item.price.toFixed(
-              2
-            )}`}</span>
-            <span className={classes.amount}>{item.count}</span>
-          </div>
+          <h2 onClick={()=>{}}>Order {index+1}</h2>
+            <Button btnName="Order Details" onclick={()=>{navigate(`/my-order/${index}`)}}/>
         </div>
       </li>
     );
   });
   return (
     <div className={classes.MyOrders}>
-      <ul style={{ height: "15rem", overflow: "auto" }}>{order}</ul>
-      {
-        <div className={classes.total}>
-          <span>Total Amount</span>
-          <span>{totalAmount}</span>
-        </div>
-      }
+      <ul style={{ height: "15rem", overflow: "auto" }}>{!orderLength!==0?order:<h2>Start placing order and have a meal</h2>}</ul>
+      
     </div>
   );
 }

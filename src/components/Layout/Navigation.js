@@ -33,11 +33,14 @@ function Navigation(props) {
                 </div>
                 <div className={classes.nav}>
                     {state.isLoggedIn && <li>
-                        <NavLink to="/products">Products</NavLink>
+                        <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/products">Platters</NavLink>
                     </li>}
                     {state.isLoggedIn && <li>
-                        <NavLink to="/cart"><CartButton/></NavLink>
+                        <NavLink  to="/cart"><CartButton/></NavLink>
                     </li>}
+                    {state.isLoggedIn && <li>
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/my-order">My Orders</NavLink>
+                        </li>}
                     {!state.isLoggedIn && <li>
                         <NavLink className={classes.AuthButton} to="/auth" style={{paddingTop:'0.2rem'}}>Login</NavLink>
                     </li>}
@@ -45,7 +48,7 @@ function Navigation(props) {
                         <button className={classes.AuthButton} onClick={onLogoutHandler}>Logout</button>
                     </li>}
                     {state.isLoggedIn && <li>
-                        <NavLink to="/profile">
+                        <NavLink to="/profile" className={(navData) => (navData.isActive ? classes.active : classes.hover)}>
                         <i class="far fa-user-circle"></i>
                         {/* {state.userEmail.substr(0,7)+".."} */}
                         </NavLink>
@@ -58,22 +61,22 @@ function Navigation(props) {
             <div >
                 <ul className={`${classes.menu_mobile} ${showMenu?classes.menu_mobile_show:''}`}>
                     {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink to="/products">Platters</NavLink>
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/products">Platters</NavLink>
                         </li>}
                         {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink to="/cart"><div className={classes.cartButton_mobile}>
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/cart"><div className={classes.cartButton_mobile}>
                                 <h3>Cart</h3>
                                 <p>{cartCount}</p>
                             </div></NavLink>
                         </li>}
                         {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink  to="/my-order">My Orders</NavLink>
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)}  to="/my-order">My Orders</NavLink>
                         </li>}
                         {!state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink className={classes.AuthButton} to="/auth" style={{paddingTop:'0.2rem'}}>Login</NavLink>
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} className={classes.AuthButton} to="/auth" style={{paddingTop:'0.2rem'}}>Login</NavLink>
                         </li>}
                         {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
-                            <NavLink to="/profile">
+                            <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/profile">
                             Profile
                             {/* {state.userEmail.substr(0,7)+".."} */}
                             </NavLink>

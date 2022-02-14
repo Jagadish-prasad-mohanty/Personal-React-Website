@@ -20,6 +20,7 @@ import { Redirect } from 'react-router';
 import Pallet from './components/Pallet/Platter';
 import Platter from './components/Pallet/Platter';
 import OrdersPage from './pages/OrdersPage';
+import MyOrder from './components/Orders/MyOrder';
 
 function App() {
   const [modalActive,setModalActive]=useState(false);
@@ -55,6 +56,7 @@ function App() {
         {state.isLoggedIn && <Route path="/products/:queryParams" element={<ProductPage/>}/>}
         {state.isLoggedIn && <Route path="/product-details/:id" element={<ProductDetails/>}/>}
         {state.isLoggedIn && <Route path="/check-out" element={<CheckOutPage/>}/>}
+        {state.isLoggedIn && <Route path="/my-order/:orderId" element={<MyOrder/>}/>}
         {state.isLoggedIn && <Route path="/my-order" element={<OrdersPage/>}/>}
 
         {state.isLoggedIn && <Route path="/resturants/:id" element={<Resturants/>}/>}
