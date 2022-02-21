@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./MyOrders.module.css";
+import classes from "./MyOrder.module.css";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router";
 function MyOrder() {
@@ -25,14 +25,14 @@ function MyOrder() {
     );
   });
   return (
-    <div className={classes.MyOrders}>
+    <div className={classes.MyOrder}>
       <ul style={{ height: "15rem", overflow: "auto" }}>{myOrder}</ul>
-      {
+      
         <div className={classes.total}>
           <span>Total Amount</span>
           <span>{totalAmount+totalAmount*0.1}</span>
         </div>
-      }
+      
     </div>
   );
 }

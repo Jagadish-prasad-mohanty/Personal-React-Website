@@ -2,6 +2,7 @@ import React ,{useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCart } from '../../store/actions/cartAction';
 import { fetchProducts } from '../../store/actions/productAction';
+import { fetchOrder } from '../../store/actions/orderAction';
 import classes from './Layout.module.css';
 import Button from '../UI/Button/Button';
 import Navigation from './Navigation';
@@ -13,6 +14,7 @@ function Layout(props) {
         if (currentUser)
         dispatch(fetchCart());
         dispatch(fetchProducts());
+        dispatch(fetchOrder())
     },[currentUser])
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
