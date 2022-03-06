@@ -1,5 +1,5 @@
 .Product{
-    width: 90%;
+    width: 70%;
     /* height: 10rem; */
     display: flex;
     justify-content: space-between;
@@ -12,7 +12,7 @@
 }
 .Product .ProductImg{
     width:20%;
-    height: 10rem;
+    height: 8rem;
     object-fit: cover;
     border-radius: 1rem;
 }

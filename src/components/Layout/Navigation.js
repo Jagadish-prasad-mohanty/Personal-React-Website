@@ -59,7 +59,7 @@ function Navigation(props) {
             </ul>
 
             {/* mobile screan */}
-            <div >
+            <div className={classes.mobile_nav}>
                 <ul className={`${classes.menu_mobile} ${showMenu?classes.menu_mobile_show:''}`}>
                     {state.isLoggedIn && showMenu && <li onClick={navMenuToggler}>
                             <NavLink className={(navData) => (navData.isActive ? classes.active : classes.hover)} to="/products">Platters</NavLink>

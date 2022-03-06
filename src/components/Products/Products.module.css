@@ -11,6 +11,7 @@
     margin-bottom: 1rem;
     position:fixed;
     top: 4rem;
+    z-index: 51;
     right: 4rem;
 }
 hr{

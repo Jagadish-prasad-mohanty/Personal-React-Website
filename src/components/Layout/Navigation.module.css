@@ -6,7 +6,7 @@
     left: 0;
     top: 0;
     box-shadow: rgba(0,0,0,0.25);
-    z-index: 10;
+    z-index: 60;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +68,7 @@ button{
     
 }
 .AuthButton{
-    border-radius: 1rem;
+    border-radius: 0.2rem;
     padding: 0.3rem 0.5rem;
     transition: all 0.2s ease-out;
     color: #2c0d00;
@@ -88,6 +88,7 @@ button{
 }
 
 @media (max-width:567px){
+    
     .hb_mobile{
         display: block;
     }
@@ -103,7 +104,7 @@ button{
         gap: 1rem;
         width: 80%;
         height:100vh;
-        z-index: 10;
+        z-index: 60;
         padding: 0.5rem;
         position: fixed;
         top:3.5rem;
@@ -138,6 +139,6 @@ button{
         left:0;
         width:100%;
         height:100vh;
-        z-index:5;
+        z-index:59;
     }
 }

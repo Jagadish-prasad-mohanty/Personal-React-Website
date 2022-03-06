@@ -26,7 +26,7 @@ function MyOrder() {
   });
   return (
     <div className={classes.MyOrder}>
-      <ul style={{ height: "15rem", overflow: "auto" }}>{myOrder}</ul>
+      <ul >{myOrder}</ul>
       
         <div className={classes.total}>
           <span>Total Amount</span>

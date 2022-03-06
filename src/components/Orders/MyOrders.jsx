@@ -30,7 +30,7 @@ function MyOrders() {
   return (
     <div className={classes.MyOrders}>
       {/* <h1>{orderLength}</h1> */}
-      <ul style={{ height: "15rem", overflow: "auto" }}>
+      <ul >
         {orders.length !== 0 ? (
           order
         ) : (

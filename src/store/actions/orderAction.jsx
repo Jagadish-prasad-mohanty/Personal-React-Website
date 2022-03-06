@@ -14,10 +14,13 @@ export const toggleLoading= (toggleBool)=>{
 }
 
 export const fetchOrder= ()=>{
-    const currentUser= localStorage.getItem('user').split(".")[0];
+    let currentUser= localStorage.getItem('user');
+    if (currentUser){
+        currentUser= localStorage.getItem('user').split(".")[0]
+    }
     return async (dispatch)=>{
         dispatch(toggleLoading(true))
-        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/cart/${currentUser}/orders.json`)
+        fetch(`https://reactpersonalproject-default-rtdb.firebaseio.com/orders/${currentUser}.json`)
         .then(res=>{
             dispatch(toggleLoading(false))
             if(!res.ok){

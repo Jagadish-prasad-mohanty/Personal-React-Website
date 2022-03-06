@@ -1,4 +1,6 @@
 
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {LOG_IN,LOG_OUT} from '../actions/authActions';
 
 
@@ -11,11 +13,43 @@ const initialAuthState={
     expTime:null,
     userAddress:null
 }
+const remainingTimeCalc= (expTime) =>{
+    const currTime=new Date().getTime();
+    console.log("[authReducer]",expTime,currTime);
+    const adjExpTime=new Date(expTime);
+
+    const remainingTime=adjExpTime-currTime;
+    return remainingTime;
+    
+}
+const retrivedStoredToken= ()=>{
+    const storedToken= localStorage.getItem('token');
+    const expTime= localStorage.getItem('expTime');
+
+    const remainingTime=remainingTimeCalc(expTime)
+    if (remainingTime<=30000){
+        localStorage.removeItem('token');
+        localStorage.removeItem('expTime');
+        return null;
+    }
+
+    return {
+        token:storedToken,
+        remainingTime
+    }
+}
 
 
 const authReducer= (state=initialAuthState,action)=>{
-//     const userLoggedIn=!!state.token;
-    const fetchedUserToken=localStorage.getItem('token');
+//     const userLoggedIn=!!state.token;\
+    let fetchedUserToken=null;
+    let initialTokenData=retrivedStoredToken();
+
+    if (initialTokenData){
+
+        fetchedUserToken=initialTokenData.token;
+        
+    }
     const fetchedUserName=localStorage.getItem('user');
     // if (fetchedUserToken){
     // dispatch(loginHandler({'userToken':fetchedUserToken,'userName':fetchedUserName}))
@@ -26,6 +60,7 @@ const authReducer= (state=initialAuthState,action)=>{
     //     userToken:fetchedUserToken
     // };
     // state={...updatedState};
+    
     switch(action.type){
         case LOG_IN:
             const newToken=action.userData.userToken;

@@ -1,3 +1,20 @@
+.Profile{
+    /* text-align: left; */
+    padding: 1rem;
+}
+.ProfileMain{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.ProfileCardProfile{
+    flex: 0.33;
+    /* position:fixed; */
+   
+    display: grid;
+    place-items: left;
+    padding-left: 1rem;
+}
 .Profile span{
     font-size: 1.5rem;
     font-weight: bold;
@@ -5,4 +22,22 @@
 
 .PassResetForm{
     max-width: 30rem;
+}
+
+.ProfileContent{
+    flex: 0.66;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column;
+}
+
+@media (max-width:650px) {
+    .ProfileMain{
+        flex-flow: column;
+        padding-left: 0;
+    }
+    .ProfileCardProfile{
+        flex: 1;
+    }
 }

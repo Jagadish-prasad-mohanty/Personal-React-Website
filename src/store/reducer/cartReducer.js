@@ -53,6 +53,7 @@ const cartReducer= (state=initialCartState,action) =>{
         case RESET_CART:
             currentUser=localStorage.getItem('user').split(".")[0];
             updatedTotalCart['cart']=[];
+            
                 updatedTotalCart[ 'totalCount']=0;
                 updatedTotalCart['totalAmount']=0;
                 updatedTotalCart['userAddress']=state.userAddress;

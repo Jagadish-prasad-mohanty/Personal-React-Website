@@ -72,10 +72,11 @@ function AuthForm(props) {
             
             console.log(data);
             props.show("Success!!",'complete');
+            console.log(data);
             if (isSignIn){
-              const newTime=new Date().getTime();
+              const newTime=new Date(new Date().getTime()+(+data.expiresIn)*1000);
               // const expTime
-              dispatch(loginHandler({userToken:data.idToken,userEmail:data.email,expTime:newTime+5000}));
+              dispatch(loginHandler({userToken:data.idToken,userEmail:data.email,expTime:newTime.toISOString()}));
       
               navigate('/products');
             }
